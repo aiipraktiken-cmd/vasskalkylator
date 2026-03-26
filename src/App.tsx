@@ -1,12 +1,20 @@
 import { useState } from 'react'
-import { Sun, Snowflake, Sprout, Droplets, Info, Scale } from 'lucide-react'
+import { Sun, Snowflake, Sprout, Droplets, Info, Scale, Copy, Check } from 'lucide-react'
 
 type Season = 'summer' | 'winter'
+type Copied = 'nitrogen' | 'phosphorus' | null
 
 export default function App() {
   const [hectares, setHectares] = useState<number | ''>(1)
   const [season, setSeason] = useState<Season>('summer')
   const [showInfo, setShowInfo] = useState(false)
+  const [copied, setCopied] = useState<Copied>(null)
+
+  function copy(value: number, which: Copied) {
+    navigator.clipboard.writeText(String(value))
+    setCopied(which)
+    setTimeout(() => setCopied(null), 1800)
+  }
 
   const isSummer = season === 'summer'
   const ha = hectares === '' ? 0 : hectares
@@ -35,10 +43,15 @@ export default function App() {
 
         {/* Header */}
         <div className="mb-10 text-center">
-          <h1 className="text-3xl sm:text-4xl font-light tracking-tight mb-3">
-            Vasskalkylatorn
+          <h1
+            className="text-6xl sm:text-8xl font-black tracking-tight mb-3 leading-none"
+            style={{ WebkitTextStroke: '2px #4A5D4E', color: 'transparent' }}
+          >
+            Vass
+            <br />
+            kalkylatorn
           </h1>
-          <p className="text-[#6B7268] font-light text-sm sm:text-base">
+          <p className="text-[#6B7268] font-light text-sm sm:text-base mt-4">
             Beräkna reduktion av kväve och fosfor vid vasskörd
           </p>
         </div>
@@ -119,6 +132,16 @@ export default function App() {
                   <span className="text-lg text-[#A9BBAE]">kg</span>
                 </div>
                 <p className="text-sm mt-2 font-medium">Kväve (N)</p>
+                <button
+                  onClick={() => copy(nitrogen, 'nitrogen')}
+                  className="mt-3 flex items-center gap-1.5 text-xs text-[#A9BBAE] hover:text-white transition-colors duration-200 cursor-pointer"
+                  aria-label="Kopiera kväve-värde"
+                >
+                  {copied === 'nitrogen'
+                    ? <><Check className="w-3.5 h-3.5" />Kopierat</>
+                    : <><Copy className="w-3.5 h-3.5" />Kopiera</>
+                  }
+                </button>
               </div>
               <div>
                 <div className="flex items-baseline gap-1">
@@ -128,6 +151,16 @@ export default function App() {
                   <span className="text-lg text-[#A9BBAE]">kg</span>
                 </div>
                 <p className="text-sm mt-2 font-medium">Fosfor (P)</p>
+                <button
+                  onClick={() => copy(phosphorus, 'phosphorus')}
+                  className="mt-3 flex items-center gap-1.5 text-xs text-[#A9BBAE] hover:text-white transition-colors duration-200 cursor-pointer"
+                  aria-label="Kopiera fosfor-värde"
+                >
+                  {copied === 'phosphorus'
+                    ? <><Check className="w-3.5 h-3.5" />Kopierat</>
+                    : <><Copy className="w-3.5 h-3.5" />Kopiera</>
+                  }
+                </button>
               </div>
             </div>
           </div>
