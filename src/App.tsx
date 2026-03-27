@@ -1,8 +1,22 @@
 import { useState } from 'react'
-import { Sun, Snowflake, Sprout, Droplets, Info, Scale, Copy, Check } from 'lucide-react'
+import { Sun, Snowflake, Sprout, Droplets, Info, Scale, Copy, Check, Leaf } from 'lucide-react'
 
 type Season = 'summer' | 'winter'
 type Copied = 'nitrogen' | 'phosphorus' | null
+
+// Näring per hektar (kg/ha)
+const SUMMER_P = 10
+const SUMMER_N = 100
+const WINTER_P = 2
+const WINTER_N = 20
+
+// Skörd (ton torrvikt/ha)
+const TS_MIN = 5
+const TS_MAX = 10
+
+// Vattenhalt
+const WATER_SUMMER = 0.50
+const WATER_WINTER = 0.15  // medel av 10–20%
 
 export default function App() {
   const [hectares, setHectares] = useState<number | ''>(1)
@@ -20,12 +34,13 @@ export default function App() {
   const ha = hectares === '' ? 0 : hectares
 
   // Näring (kg)
-  const nitrogen = ha * (isSummer ? 100 : 20)
-  const phosphorus = ha * (isSummer ? 10 : 2)
+  const nitrogen = ha * (isSummer ? SUMMER_N : WINTER_N)
+  const phosphorus = ha * (isSummer ? SUMMER_P : WINTER_P)
 
-  // Vikter (ton)
-  const wetWeightMin = isSummer ? ha * 10 : ha * 5.5
-  const wetWeightMax = isSummer ? ha * 20 : ha * 12
+  // Vikter: Torrvikt / (1 - Vattenhalt)
+  const waterContent = isSummer ? WATER_SUMMER : WATER_WINTER
+  const wetWeightMin = (ha * TS_MIN) / (1 - waterContent)
+  const wetWeightMax = (ha * TS_MAX) / (1 - waterContent)
 
   function handleInput(e: React.ChangeEvent<HTMLInputElement>) {
     const val = e.target.value
@@ -166,49 +181,69 @@ export default function App() {
           </div>
         </div>
 
-        {/* Weights & Info */}
-        <div className="space-y-4">
-          <div className="bg-white rounded-2xl p-5 shadow-[0_4px_20px_rgb(0,0,0,0.02)] flex flex-col sm:flex-row gap-4 sm:items-center justify-between">
-            <div className="flex items-center gap-3 text-[#6B7268]">
-              <Scale className="w-5 h-5 flex-shrink-0" />
-              <div>
-                <p className="text-xs uppercase tracking-wider">Estimerad skörd (våtvikt)</p>
-                <p className="font-medium text-[#2C312E]">
-                  {wetWeightMin.toLocaleString('sv-SE')} – {wetWeightMax.toLocaleString('sv-SE')} ton
-                </p>
-              </div>
+        {/* Näringsnyttan */}
+        <div className="bg-white rounded-2xl shadow-[0_4px_20px_rgb(0,0,0,0.02)] p-6 mb-6">
+          <div className="flex items-center gap-2 mb-5">
+            <Leaf className="w-4 h-4 text-[#4A5D4E]" strokeWidth={1.5} />
+            <h3 className="text-sm font-medium text-[#6B7268] uppercase tracking-wider">Näringsnyttan</h3>
+          </div>
+          <div className="divide-y divide-[#F0F0EC]">
+            <div className="flex items-center justify-between py-3">
+              <span className="text-sm text-[#6B7268]">Mängd fosfor bortförd</span>
+              <span className="font-medium text-[#2C312E]">{phosphorus.toLocaleString('sv-SE')} kg</span>
             </div>
-            <div className="h-px sm:h-8 w-full sm:w-px bg-[#E5E5E0] flex-shrink-0" />
-            <div className="flex items-center gap-3 text-[#6B7268]">
-              <Droplets className="w-5 h-5 flex-shrink-0" />
-              <div>
-                <p className="text-xs uppercase tracking-wider">Vattenhalt</p>
-                <p className="font-medium text-[#2C312E]">{isSummer ? '~ 50%' : '~ 10–20%'}</p>
+            <div className="flex items-center justify-between py-3">
+              <span className="text-sm text-[#6B7268]">Mängd kväve bortförd</span>
+              <span className="font-medium text-[#2C312E]">{nitrogen.toLocaleString('sv-SE')} kg</span>
+            </div>
+            <div className="flex items-center justify-between py-3">
+              <div className="flex items-center gap-2 text-[#6B7268]">
+                <Scale className="w-4 h-4 flex-shrink-0" />
+                <span className="text-sm">Beräknad biomassa (våtvikt)</span>
               </div>
+              <span className="font-medium text-[#2C312E]">
+                {wetWeightMin.toLocaleString('sv-SE', { maximumFractionDigits: 1 })}–{wetWeightMax.toLocaleString('sv-SE', { maximumFractionDigits: 1 })} ton
+              </span>
+            </div>
+            <div className="flex items-center justify-between py-3">
+              <div className="flex items-center gap-2 text-[#6B7268]">
+                <Droplets className="w-4 h-4 flex-shrink-0" />
+                <span className="text-sm">Vattenhalt</span>
+              </div>
+              <span className="font-medium text-[#2C312E]">{isSummer ? '~ 50%' : '~ 10–20%'}</span>
             </div>
           </div>
+        </div>
 
+        {/* Info */}
+        <div className="space-y-4">
           <button
             onClick={() => setShowInfo(!showInfo)}
-            className="flex items-center gap-2 text-sm text-[#8E948C] hover:text-[#4A5D4E] transition-colors mx-auto mt-6"
+            className="flex items-center gap-2 text-sm text-[#8E948C] hover:text-[#4A5D4E] transition-colors mx-auto mt-2"
           >
             <Info className="w-4 h-4" />
-            <span>Om beräkningarna</span>
+            <span>Hur beräknas näringsnyttan?</span>
           </button>
 
           {showInfo && (
             <div className="bg-[#EAECE9] p-5 rounded-2xl text-sm text-[#4A5D4E] leading-relaxed">
-              <p className="mb-2">
-                Beräkningarna baseras på mätningar och rapporter (bl.a. finska ELY-centralen och BalticReed).
-                Generellt ger en hektar 5–10 ton torrvikt (TS) vass.
+              <p className="mb-3">
+                Beräkningarna baseras på vetenskapliga schablonvärden för vass (<em>Phragmites australis</em>) i Östersjöregionen
+                (bl.a. finska ELY-centralen och BalticReed). Generellt ger en hektar 5–10 ton torrvikt (TS) vass.
               </p>
-              <ul className="list-disc pl-4 space-y-1">
-                <li>
-                  <strong>Sommar:</strong> 10 kg fosfor &amp; 100 kg kväve per hektar. Näringshalten når sin peak i mitten av augusti.
-                </li>
-                <li>
-                  <strong>Vinter:</strong> 2 kg fosfor &amp; 20 kg kväve per hektar.
-                </li>
+              <p className="font-medium mb-2">Varför är sommarvass bättre för näringen?</p>
+              <p className="mb-3">
+                Under sommaren (juli–september) lagrar vassen sin näring i de gröna delarna ovanför vattenytan —
+                ca <strong>10 kg fosfor</strong> och <strong>100 kg kväve</strong> per hektar.
+                Vid vinterskörd har vassen transporterat ner ca 80 % av näringen till rötterna, vilket ger
+                lägre näringsbortförsel (<strong>2 kg P</strong> och <strong>20 kg N</strong> per hektar),
+                men vassen är lättare att hantera då den är torrare.
+              </p>
+              <p className="font-medium mb-2">Formler</p>
+              <ul className="space-y-1 text-[#5A6E5E]">
+                <li>Fosforuttag: Areal × {isSummer ? SUMMER_P : WINTER_P} kg/ha</li>
+                <li>Kväveuttag: Areal × {isSummer ? SUMMER_N : WINTER_N} kg/ha</li>
+                <li>Våtvikt: Torrvikt ÷ (1 − Vattenhalt)</li>
               </ul>
             </div>
           )}
