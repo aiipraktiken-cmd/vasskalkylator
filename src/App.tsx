@@ -22,6 +22,7 @@ export default function App() {
   const [hectares, setHectares] = useState<number | ''>(1)
   const [season, setSeason] = useState<Season>('summer')
   const [showInfo, setShowInfo] = useState(false)
+  const [showNaringsInfo, setShowNaringsInfo] = useState(false)
   const [copied, setCopied] = useState<Copied>(null)
 
   function copy(value: number, which: Copied) {
@@ -179,6 +180,33 @@ export default function App() {
               </div>
             </div>
           </div>
+
+          {/* Om beräkningarna */}
+          <div className="mt-5">
+            <button
+              onClick={() => setShowInfo(!showInfo)}
+              className="flex items-center gap-2 text-sm text-[#8E948C] hover:text-[#4A5D4E] transition-colors mx-auto"
+            >
+              <Info className="w-4 h-4" />
+              <span>Om beräkningarna</span>
+            </button>
+            {showInfo && (
+              <div className="mt-4 bg-[#EAECE9] p-5 rounded-2xl text-sm text-[#4A5D4E] leading-relaxed">
+                <p className="mb-2">
+                  Beräkningarna baseras på mätningar och rapporter (bl.a. finska ELY-centralen och BalticReed).
+                  Generellt ger en hektar 5–10 ton torrvikt (TS) vass.
+                </p>
+                <ul className="list-disc pl-4 space-y-1">
+                  <li>
+                    <strong>Sommar:</strong> 10 kg fosfor &amp; 100 kg kväve per hektar. Näringshalten når sin peak i mitten av augusti.
+                  </li>
+                  <li>
+                    <strong>Vinter:</strong> 2 kg fosfor &amp; 20 kg kväve per hektar.
+                  </li>
+                </ul>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Näringsnyttan */}
@@ -213,34 +241,30 @@ export default function App() {
               <span className="font-medium text-[#2C312E]">{isSummer ? '~ 50%' : '~ 10–20%'}</span>
             </div>
           </div>
-        </div>
 
-        {/* Info */}
-        <div className="space-y-4">
-          <button
-            onClick={() => setShowInfo(!showInfo)}
-            className="flex items-center gap-2 text-sm text-[#8E948C] hover:text-[#4A5D4E] transition-colors mx-auto mt-2"
-          >
-            <Info className="w-4 h-4" />
-            <span>Om beräkningarna</span>
-          </button>
-
-          {showInfo && (
-            <div className="bg-[#EAECE9] p-5 rounded-2xl text-sm text-[#4A5D4E] leading-relaxed">
-              <p className="mb-2">
-                Beräkningarna baseras på mätningar och rapporter (bl.a. finska ELY-centralen och BalticReed).
-                Generellt ger en hektar 5–10 ton torrvikt (TS) vass.
-              </p>
-              <ul className="list-disc pl-4 space-y-1">
-                <li>
-                  <strong>Sommar:</strong> 10 kg fosfor &amp; 100 kg kväve per hektar. Näringshalten når sin peak i mitten av augusti.
-                </li>
-                <li>
-                  <strong>Vinter:</strong> 2 kg fosfor &amp; 20 kg kväve per hektar.
-                </li>
-              </ul>
-            </div>
-          )}
+          {/* Om näringsnyttan */}
+          <div className="mt-5">
+            <button
+              onClick={() => setShowNaringsInfo(!showNaringsInfo)}
+              className="flex items-center gap-2 text-sm text-[#8E948C] hover:text-[#4A5D4E] transition-colors mx-auto"
+            >
+              <Info className="w-4 h-4" />
+              <span>Om näringsnyttan</span>
+            </button>
+            {showNaringsInfo && (
+              <div className="mt-4 bg-[#EAECE9] p-5 rounded-2xl text-sm text-[#4A5D4E] leading-relaxed">
+                <p className="mb-2">
+                  Näringsnyttan visar hur mycket fosfor och kväve som faktiskt lyfts ut ur vattenekosystemet
+                  vid en vasskörd — och hur stor biomassa det motsvarar.
+                </p>
+                <p>
+                  Våtvikten beräknas utifrån torrvikt (5–10 ton/ha) och vassens vattenhalt:
+                  ca 50 % på sommaren och 10–20 % på vintern.
+                  Formeln: <em>Torrvikt ÷ (1 − Vattenhalt)</em>.
+                </p>
+              </div>
+            )}
+          </div>
         </div>
 
       </div>
