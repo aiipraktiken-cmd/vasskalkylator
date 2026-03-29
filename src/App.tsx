@@ -166,7 +166,7 @@ export default function App() {
                   </span>
                   <span className="text-lg text-[#A9BBAE]">kg</span>
                 </div>
-                <p className="text-sm mt-2 font-medium">Fosfor (P)</p>
+                <p className="text-sm mt-2 font-medium">Fosfor (elementärt P)</p>
                 <button
                   onClick={() => copy(phosphorus, 'phosphorus')}
                   className="mt-3 flex items-center gap-1.5 text-xs text-[#A9BBAE] hover:text-white transition-colors duration-200 cursor-pointer"
@@ -191,19 +191,49 @@ export default function App() {
               <span>Om beräkningarna</span>
             </button>
             {showInfo && (
-              <div className="mt-4 bg-[#EAECE9] p-5 rounded-2xl text-sm text-[#4A5D4E] leading-relaxed">
-                <p className="mb-2">
+              <div className="mt-4 bg-[#EAECE9] p-5 rounded-2xl text-sm text-[#4A5D4E] leading-relaxed space-y-4">
+                <p>
                   Beräkningarna baseras på mätningar och rapporter (bl.a. finska ELY-centralen och BalticReed).
-                  Generellt ger en hektar 5–10 ton torrvikt (TS) vass.
+                  Alla värden avser <strong>elementärt fosfor (P)</strong> och totalkväve (N) — inte fosfat eller nitrat.
+                  N och P redovisas separat utan kombinerad viktning.
                 </p>
-                <ul className="list-disc pl-4 space-y-1">
-                  <li>
-                    <strong>Sommar:</strong> 10 kg fosfor &amp; 100 kg kväve per hektar. Näringshalten når sin peak i mitten av augusti.
-                  </li>
-                  <li>
-                    <strong>Vinter:</strong> 2 kg fosfor &amp; 20 kg kväve per hektar.
-                  </li>
-                </ul>
+                <div>
+                  <p className="font-medium mb-2">Ingångsantaganden</p>
+                  <table className="w-full text-xs border-collapse">
+                    <thead>
+                      <tr className="text-[#6B7268]">
+                        <th className="text-left pb-1 font-medium">Parameter</th>
+                        <th className="text-right pb-1 font-medium">Sommar</th>
+                        <th className="text-right pb-1 font-medium">Vinter</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-[#D8DDD7]">
+                      <tr>
+                        <td className="py-1.5">Fosfor (elementärt P)</td>
+                        <td className="text-right">10 kg/ha</td>
+                        <td className="text-right">2 kg/ha</td>
+                      </tr>
+                      <tr>
+                        <td className="py-1.5">Kväve (total-N)</td>
+                        <td className="text-right">100 kg/ha</td>
+                        <td className="text-right">20 kg/ha</td>
+                      </tr>
+                      <tr>
+                        <td className="py-1.5">Torrvikt (TS)</td>
+                        <td className="text-right" colSpan={2}>5–10 ton/ha</td>
+                      </tr>
+                      <tr>
+                        <td className="py-1.5">Vattenhalt</td>
+                        <td className="text-right">~ 50 %</td>
+                        <td className="text-right">~ 10–20 %</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p className="text-xs text-[#6B7268]">
+                  Våtvikt beräknas som: Torrvikt ÷ (1 − Vattenhalt).
+                  Vid {isSummer ? 'sommar' : 'vinter'} används {isSummer ? '50' : '15'} % vattenhalt som medelvärde.
+                </p>
               </div>
             )}
           </div>
@@ -217,7 +247,7 @@ export default function App() {
           </div>
           <div className="divide-y divide-[#F0F0EC]">
             <div className="flex items-center justify-between py-3">
-              <span className="text-sm text-[#6B7268]">Mängd fosfor bortförd</span>
+              <span className="text-sm text-[#6B7268]">Mängd fosfor bortförd (elementärt P)</span>
               <span className="font-medium text-[#2C312E]">{phosphorus.toLocaleString('sv-SE')} kg</span>
             </div>
             <div className="flex items-center justify-between py-3">
