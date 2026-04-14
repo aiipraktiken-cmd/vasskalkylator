@@ -40,8 +40,10 @@ export default function App() {
 
   // Vikter: Torrvikt / (1 - Vattenhalt)
   const waterContent = isSummer ? WATER_SUMMER : WATER_WINTER
-  const wetWeightMin = (ha * TS_MIN) / (1 - waterContent)
-  const wetWeightMax = (ha * TS_MAX) / (1 - waterContent)
+  const dryWeightMin = ha * TS_MIN
+  const dryWeightMax = ha * TS_MAX
+  const wetWeightMin = dryWeightMin / (1 - waterContent)
+  const wetWeightMax = dryWeightMax / (1 - waterContent)
 
   function handleInput(e: React.ChangeEvent<HTMLInputElement>) {
     const val = e.target.value
@@ -253,6 +255,15 @@ export default function App() {
             <div className="flex items-center justify-between py-3">
               <span className="text-sm text-[#6B7268]">Mängd kväve bortförd</span>
               <span className="font-medium text-[#2C312E]">{nitrogen.toLocaleString('sv-SE')} kg</span>
+            </div>
+            <div className="flex items-center justify-between py-3">
+              <div className="flex items-center gap-2 text-[#6B7268]">
+                <Scale className="w-4 h-4 flex-shrink-0" />
+                <span className="text-sm">Torrvikt (TS)</span>
+              </div>
+              <span className="font-medium text-[#2C312E]">
+                {dryWeightMin.toLocaleString('sv-SE', { maximumFractionDigits: 1 })}–{dryWeightMax.toLocaleString('sv-SE', { maximumFractionDigits: 1 })} ton
+              </span>
             </div>
             <div className="flex items-center justify-between py-3">
               <div className="flex items-center gap-2 text-[#6B7268]">
