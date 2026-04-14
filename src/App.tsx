@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Sun, Snowflake, Sprout, Droplets, Info, Scale, Copy, Check, Leaf } from 'lucide-react'
+import { Sun, Snowflake, Sprout, Droplets, Info, Scale, Copy, Check, Leaf, Zap, Wind } from 'lucide-react'
 
 type Season = 'summer' | 'winter'
 type Copied = 'nitrogen' | 'phosphorus' | null
@@ -41,6 +41,11 @@ export default function App() {
   const waterContent = isSummer ? WATER_SUMMER : WATER_WINTER
   const dryWeight = ha * TS_SCHABLON
   const wetWeight = dryWeight / (1 - waterContent)
+
+  // Energi & Klimat
+  const energyMWh = dryWeight * 4.8
+  const co2BoundTon = dryWeight * 1.83
+  const housesEquiv = Math.round(energyMWh * 1000 / 5000)
 
   function handleInput(e: React.ChangeEvent<HTMLInputElement>) {
     const val = e.target.value
@@ -302,6 +307,43 @@ export default function App() {
                 </p>
               </div>
             )}
+          </div>
+        </div>
+
+        {/* Energi & Klimat */}
+        <div className="bg-white rounded-2xl shadow-[0_4px_20px_rgb(0,0,0,0.02)] p-6 mb-6">
+          <div className="flex items-center gap-2 mb-5">
+            <Zap className="w-4 h-4 text-[#4A5D4E]" strokeWidth={1.5} />
+            <h3 className="text-sm font-medium text-[#6B7268] uppercase tracking-wider">Energi &amp; Klimat</h3>
+          </div>
+          <div className="divide-y divide-[#F0F0EC]">
+            <div className="flex items-center justify-between py-3">
+              <span className="text-sm text-[#6B7268]">Energipotential (4,8 MWh/ton TS)</span>
+              <span className="font-medium text-[#2C312E]">
+                {energyMWh.toLocaleString('sv-SE', { maximumFractionDigits: 1 })} MWh
+              </span>
+            </div>
+            <div className="flex items-center justify-between py-3">
+              <div className="flex items-center gap-2 text-[#6B7268]">
+                <Wind className="w-4 h-4 flex-shrink-0" />
+                <span className="text-sm">Bundet biogent kol (CO₂)</span>
+              </div>
+              <span className="font-medium text-[#2C312E]">
+                {co2BoundTon.toLocaleString('sv-SE', { maximumFractionDigits: 1 })} ton
+              </span>
+            </div>
+            <div className="flex items-center justify-between py-3">
+              <span className="text-sm text-[#6B7268]">Motsvarar hushållsel för</span>
+              <span className="font-medium text-[#2C312E]">{housesEquiv.toLocaleString('sv-SE')} villor/år</span>
+            </div>
+          </div>
+          <div className="mt-5">
+            <p className="text-xs text-[#8E948C] leading-relaxed">
+              Vass är ett snabbväxande biobränsle. Varje ton torr vass innehåller ca 4,8 MWh energi.
+              Vassen binder koldioxid under sin tillväxt — genom att använda vassen som energi eller
+              jordförbättring cirkulerar vi detta kol istället för att tillföra nytt fossilt kol till atmosfären.
+              Jämförelsen utgår från 5 000 kWh/år i hushållsel per villa.
+            </p>
           </div>
         </div>
 
