@@ -10,9 +10,8 @@ const SUMMER_N = 100
 const WINTER_P = 2
 const WINTER_N = 20
 
-// Skörd (ton torrvikt/ha)
-const TS_MIN = 5
-const TS_MAX = 10
+// Skörd (ton torrvikt/ha) — schablon baserat på BalticReed-mätningar
+const TS_SCHABLON = 7.5
 
 // Vattenhalt
 const WATER_SUMMER = 0.50
@@ -40,10 +39,8 @@ export default function App() {
 
   // Vikter: Torrvikt / (1 - Vattenhalt)
   const waterContent = isSummer ? WATER_SUMMER : WATER_WINTER
-  const dryWeightMin = ha * TS_MIN
-  const dryWeightMax = ha * TS_MAX
-  const wetWeightMin = dryWeightMin / (1 - waterContent)
-  const wetWeightMax = dryWeightMax / (1 - waterContent)
+  const dryWeight = ha * TS_SCHABLON
+  const wetWeight = dryWeight / (1 - waterContent)
 
   function handleInput(e: React.ChangeEvent<HTMLInputElement>) {
     const val = e.target.value
@@ -221,8 +218,8 @@ export default function App() {
                         <td className="text-right">20 kg/ha</td>
                       </tr>
                       <tr>
-                        <td className="py-1.5">Torrvikt (TS)</td>
-                        <td className="text-right" colSpan={2}>5–10 ton/ha</td>
+                        <td className="py-1.5">Torrvikt (TS, schablon)</td>
+                        <td className="text-right" colSpan={2}>7,5 ton/ha</td>
                       </tr>
                       <tr>
                         <td className="py-1.5">Vattenhalt</td>
@@ -233,7 +230,7 @@ export default function App() {
                   </table>
                 </div>
                 <p className="text-xs text-[#6B7268]">
-                  Våtvikt beräknas som: Torrvikt ÷ (1 − Vattenhalt).
+                  Torrvikt beräknas med schablon 7,5 ton TS/ha. Våtvikt = Torrvikt ÷ (1 − Vattenhalt).
                   Vid {isSummer ? 'sommar' : 'vinter'} används {isSummer ? '50' : '15'} % vattenhalt som medelvärde.
                 </p>
               </div>
@@ -262,7 +259,7 @@ export default function App() {
                 <span className="text-sm">Torrvikt (TS)</span>
               </div>
               <span className="font-medium text-[#2C312E]">
-                {dryWeightMin.toLocaleString('sv-SE', { maximumFractionDigits: 1 })}–{dryWeightMax.toLocaleString('sv-SE', { maximumFractionDigits: 1 })} ton
+                {dryWeight.toLocaleString('sv-SE', { maximumFractionDigits: 1 })} ton
               </span>
             </div>
             <div className="flex items-center justify-between py-3">
@@ -271,7 +268,7 @@ export default function App() {
                 <span className="text-sm">Beräknad biomassa (våtvikt)</span>
               </div>
               <span className="font-medium text-[#2C312E]">
-                {wetWeightMin.toLocaleString('sv-SE', { maximumFractionDigits: 1 })}–{wetWeightMax.toLocaleString('sv-SE', { maximumFractionDigits: 1 })} ton
+                {wetWeight.toLocaleString('sv-SE', { maximumFractionDigits: 1 })} ton
               </span>
             </div>
             <div className="flex items-center justify-between py-3">
@@ -299,9 +296,9 @@ export default function App() {
                   vid en vasskörd — och hur stor biomassa det motsvarar.
                 </p>
                 <p>
-                  Våtvikten beräknas utifrån torrvikt (5–10 ton/ha) och vassens vattenhalt:
-                  ca 50 % på sommaren och 10–20 % på vintern.
-                  Formeln: <em>Torrvikt ÷ (1 − Vattenhalt)</em>.
+                  Torrvikten beräknas med schablonvärdet <strong>7,5 ton TS/ha</strong> (medelvärde baserat på
+                  mätningar i Östersjöregionen, BalticReed). Våtvikten räknas fram med formeln{' '}
+                  <em>Torrvikt ÷ (1 − Vattenhalt)</em>: ca 50 % på sommaren och 15 % på vintern.
                 </p>
               </div>
             )}
