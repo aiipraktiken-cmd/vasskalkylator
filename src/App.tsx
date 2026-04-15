@@ -10,8 +10,8 @@ const SUMMER_N = 100
 const WINTER_P = 2
 const WINTER_N = 20
 
-// Skörd (ton torrvikt/ha) — schablon baserat på BalticReed-mätningar
-const TS_SCHABLON = 7.5
+// Skörd (ton torrvikt/ha) — schablon
+const TS_SCHABLON = 5
 
 // Vattenhalt
 const WATER_SUMMER = 0.50
@@ -224,7 +224,7 @@ export default function App() {
                       </tr>
                       <tr>
                         <td className="py-1.5">Torrvikt (TS, schablon)</td>
-                        <td className="text-right" colSpan={2}>7,5 ton/ha</td>
+                        <td className="text-right" colSpan={2}>5 ton/ha</td>
                       </tr>
                       <tr>
                         <td className="py-1.5">Vattenhalt</td>
@@ -235,7 +235,7 @@ export default function App() {
                   </table>
                 </div>
                 <p className="text-xs text-[#6B7268]">
-                  Torrvikt beräknas med schablon 7,5 ton TS/ha. Våtvikt = Torrvikt ÷ (1 − Vattenhalt).
+                  Torrvikt beräknas med schablon 5 ton TS/ha. Våtvikt = Torrvikt ÷ (1 − Vattenhalt).
                   Vid {isSummer ? 'sommar' : 'vinter'} används {isSummer ? '50' : '15'} % vattenhalt som medelvärde.
                 </p>
               </div>
@@ -301,8 +301,7 @@ export default function App() {
                   vid en vasskörd — och hur stor biomassa det motsvarar.
                 </p>
                 <p>
-                  Torrvikten beräknas med schablonvärdet <strong>7,5 ton TS/ha</strong> (medelvärde baserat på
-                  mätningar i Östersjöregionen, BalticReed). Våtvikten räknas fram med formeln{' '}
+                  Torrvikten beräknas med schablonvärdet <strong>5 ton TS/ha</strong>. Våtvikten räknas fram med formeln{' '}
                   <em>Torrvikt ÷ (1 − Vattenhalt)</em>: ca 50 % på sommaren och 15 % på vintern.
                 </p>
               </div>
