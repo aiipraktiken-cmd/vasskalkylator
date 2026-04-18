@@ -58,103 +58,103 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F7F7F5] text-[#2C312E] font-sans flex items-center justify-center p-4 sm:p-8">
+    <div className="min-h-screen bg-[#F9F9F9] text-[#1A1A1A] font-body flex items-center justify-center p-6 sm:p-12">
       <div className="max-w-xl w-full">
 
         {/* Header */}
-        <div className="mb-10 text-center">
-          <h1
-            className="text-6xl sm:text-8xl font-black tracking-tight mb-3 leading-none"
-            style={{ WebkitTextStroke: '2px #4A5D4E', color: 'transparent' }}
-          >
-            Vass
-            <br />
-            kalkylatorn
+        <div className="mb-16">
+          <img
+            src="/raws-logo/raws-logo-green@2x.png"
+            alt="Raws"
+            className="h-7 mb-12 opacity-90"
+          />
+          <h1 className="font-display text-[72px] sm:text-[96px] font-extrabold text-[#294634] leading-[0.9] tracking-tight">
+            Vass<br />kalkyl.
           </h1>
-          <p className="text-[#6B7268] font-light text-sm sm:text-base mt-4">
+          <p className="font-body text-[#808080] text-sm mt-6 leading-relaxed">
             Beräkna reduktion av kväve och fosfor vid vasskörd
           </p>
         </div>
 
         {/* Main Card */}
-        <div className="bg-white rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.03)] p-6 sm:p-10 mb-6 transition-all duration-300">
+        <div className="bg-white border border-[#80808020] rounded-md p-8 sm:p-10 mb-4">
 
           {/* Hektar Input */}
           <div className="mb-10">
-            <label className="block text-sm font-medium text-[#6B7268] mb-3 uppercase tracking-wider">
+            <label className="block text-xs font-heading font-medium text-[#808080] mb-4 uppercase tracking-widest">
               Skördad yta (Hektar)
             </label>
-            <div className="relative">
+            <div className="relative border-b-2 border-[#80808025] focus-within:border-[#294634] transition-colors duration-200">
               <input
                 type="number"
                 min="0"
                 step="0.1"
                 value={hectares}
                 onChange={handleInput}
-                className="w-full text-4xl sm:text-5xl font-light bg-transparent border-b-2 border-[#E5E5E0] focus:border-[#4A5D4E] outline-none py-2 transition-colors duration-300 placeholder-[#D1D1CB]"
+                className="w-full text-5xl font-display font-light bg-transparent outline-none py-3 text-[#1A1A1A] placeholder-[#80808040]"
                 placeholder="0"
               />
-              <span className="absolute right-0 bottom-4 text-xl text-[#8E948C] font-light">
+              <span className="absolute right-0 bottom-4 text-xl text-[#808080] font-light font-body">
                 ha
               </span>
             </div>
           </div>
 
           {/* Season Selector */}
-          <div className="mb-12">
-            <label className="block text-sm font-medium text-[#6B7268] mb-3 uppercase tracking-wider">
+          <div className="mb-10">
+            <label className="block text-xs font-heading font-medium text-[#808080] mb-4 uppercase tracking-widest">
               Skördesäsong
             </label>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3">
               <button
                 onClick={() => setSeason('summer')}
-                className={`flex flex-col items-center justify-center py-6 px-4 rounded-2xl border transition-all duration-300 ${
+                className={`flex flex-col items-center justify-center py-5 px-4 rounded-md border transition-all duration-200 min-h-[88px] ${
                   isSummer
-                    ? 'border-[#4A5D4E] bg-[#F0F4F1] text-[#4A5D4E] shadow-sm'
-                    : 'border-[#E5E5E0] bg-white text-[#8E948C] hover:border-[#C4C4BE]'
+                    ? 'border-[#294634] bg-[#294634] text-white'
+                    : 'border-[#80808025] bg-white text-[#808080] hover:border-[#294634] hover:text-[#294634]'
                 }`}
               >
-                <Sun className="w-8 h-8 mb-2" strokeWidth={1.5} />
-                <span className="font-medium">Sommar</span>
-                <span className="text-xs mt-1 opacity-70">Juli – Sep</span>
+                <Sun className="w-6 h-6 mb-2" strokeWidth={1.5} />
+                <span className="font-heading font-medium text-sm">Sommar</span>
+                <span className="text-xs mt-0.5 opacity-60">Juli – Sep</span>
               </button>
 
               <button
                 onClick={() => setSeason('winter')}
-                className={`flex flex-col items-center justify-center py-6 px-4 rounded-2xl border transition-all duration-300 ${
+                className={`flex flex-col items-center justify-center py-5 px-4 rounded-md border transition-all duration-200 min-h-[88px] ${
                   !isSummer
-                    ? 'border-[#4A5D4E] bg-[#F0F4F1] text-[#4A5D4E] shadow-sm'
-                    : 'border-[#E5E5E0] bg-white text-[#8E948C] hover:border-[#C4C4BE]'
+                    ? 'border-[#294634] bg-[#294634] text-white'
+                    : 'border-[#80808025] bg-white text-[#808080] hover:border-[#294634] hover:text-[#294634]'
                 }`}
               >
-                <Snowflake className="w-8 h-8 mb-2" strokeWidth={1.5} />
-                <span className="font-medium">Vinter</span>
-                <span className="text-xs mt-1 opacity-70">Okt – Mar</span>
+                <Snowflake className="w-6 h-6 mb-2" strokeWidth={1.5} />
+                <span className="font-heading font-medium text-sm">Vinter</span>
+                <span className="text-xs mt-0.5 opacity-60">Okt – Mar</span>
               </button>
             </div>
           </div>
 
           {/* Results */}
-          <div className="bg-[#4A5D4E] rounded-[1.5rem] p-8 text-white relative overflow-hidden">
+          <div className="bg-[#294634] rounded-md p-8 text-white relative overflow-hidden">
             <Sprout
-              className="absolute -right-6 -bottom-6 w-48 h-48 text-white opacity-5"
+              className="absolute -right-6 -bottom-6 w-44 h-44 text-white opacity-5"
               strokeWidth={1}
             />
-            <h3 className="text-sm font-medium text-[#A9BBAE] mb-6 uppercase tracking-wider">
+            <h3 className="text-xs font-heading font-medium text-[#eddaa1] mb-8 uppercase tracking-widest">
               Bortförd näring
             </h3>
             <div className="grid grid-cols-2 gap-8 relative z-10">
               <div>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-5xl font-light tracking-tight">
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-5xl font-display font-light tracking-tight">
                     {nitrogen.toLocaleString('sv-SE')}
                   </span>
-                  <span className="text-lg text-[#A9BBAE]">kg</span>
+                  <span className="text-base text-[#eddaa1] font-body">kg</span>
                 </div>
-                <p className="text-sm mt-2 font-medium">Kväve (N)</p>
+                <p className="text-sm mt-2 font-heading font-medium">Kväve (N)</p>
                 <button
                   onClick={() => copy(nitrogen, 'nitrogen')}
-                  className="mt-3 flex items-center gap-1.5 text-xs text-[#A9BBAE] hover:text-white transition-colors duration-200 cursor-pointer"
+                  className="mt-3 flex items-center gap-1.5 text-xs text-[#eddaa1] hover:text-white transition-colors duration-200 cursor-pointer min-h-[44px]"
                   aria-label="Kopiera kväve-värde"
                 >
                   {copied === 'nitrogen'
@@ -164,16 +164,16 @@ export default function App() {
                 </button>
               </div>
               <div>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-5xl font-light tracking-tight">
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-5xl font-display font-light tracking-tight">
                     {phosphorus.toLocaleString('sv-SE')}
                   </span>
-                  <span className="text-lg text-[#A9BBAE]">kg</span>
+                  <span className="text-base text-[#eddaa1] font-body">kg</span>
                 </div>
-                <p className="text-sm mt-2 font-medium">Fosfor (elementärt P)</p>
+                <p className="text-sm mt-2 font-heading font-medium">Fosfor (elementärt P)</p>
                 <button
                   onClick={() => copy(phosphorus, 'phosphorus')}
-                  className="mt-3 flex items-center gap-1.5 text-xs text-[#A9BBAE] hover:text-white transition-colors duration-200 cursor-pointer"
+                  className="mt-3 flex items-center gap-1.5 text-xs text-[#eddaa1] hover:text-white transition-colors duration-200 cursor-pointer min-h-[44px]"
                   aria-label="Kopiera fosfor-värde"
                 >
                   {copied === 'phosphorus'
@@ -186,55 +186,55 @@ export default function App() {
           </div>
 
           {/* Om beräkningarna */}
-          <div className="mt-5">
+          <div className="mt-6">
             <button
               onClick={() => setShowInfo(!showInfo)}
-              className="flex items-center gap-2 text-sm text-[#8E948C] hover:text-[#4A5D4E] transition-colors mx-auto"
+              className="flex items-center gap-2 text-sm font-body text-[#808080] hover:text-[#294634] transition-colors mx-auto min-h-[44px]"
             >
               <Info className="w-4 h-4" />
               <span>Om beräkningarna</span>
             </button>
             {showInfo && (
-              <div className="mt-4 bg-[#EAECE9] p-5 rounded-2xl text-sm text-[#4A5D4E] leading-relaxed space-y-4">
+              <div className="mt-4 bg-[#F9F9F9] border border-[#80808015] rounded-md p-6 text-sm font-body text-[#1A1A1A] leading-relaxed space-y-4">
                 <p>
                   Beräkningarna baseras på mätningar och rapporter (bl.a. finska ELY-centralen och BalticReed).
                   Alla värden avser <strong>elementärt fosfor (P)</strong> och totalkväve (N) — inte fosfat eller nitrat.
                   N och P redovisas separat utan kombinerad viktning.
                 </p>
                 <div>
-                  <p className="font-medium mb-2">Ingångsantaganden</p>
+                  <p className="font-heading font-medium mb-3">Ingångsantaganden</p>
                   <table className="w-full text-xs border-collapse">
                     <thead>
-                      <tr className="text-[#6B7268]">
-                        <th className="text-left pb-1 font-medium">Parameter</th>
-                        <th className="text-right pb-1 font-medium">Sommar</th>
-                        <th className="text-right pb-1 font-medium">Vinter</th>
+                      <tr className="text-[#808080]">
+                        <th className="text-left pb-2 font-heading font-medium">Parameter</th>
+                        <th className="text-right pb-2 font-heading font-medium">Sommar</th>
+                        <th className="text-right pb-2 font-heading font-medium">Vinter</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-[#D8DDD7]">
+                    <tbody className="divide-y divide-[#80808015]">
                       <tr>
-                        <td className="py-1.5">Fosfor (elementärt P)</td>
+                        <td className="py-2">Fosfor (elementärt P)</td>
                         <td className="text-right">10 kg/ha</td>
                         <td className="text-right">2 kg/ha</td>
                       </tr>
                       <tr>
-                        <td className="py-1.5">Kväve (total-N)</td>
+                        <td className="py-2">Kväve (total-N)</td>
                         <td className="text-right">100 kg/ha</td>
                         <td className="text-right">20 kg/ha</td>
                       </tr>
                       <tr>
-                        <td className="py-1.5">Torrvikt (TS, schablon)</td>
+                        <td className="py-2">Torrvikt (TS, schablon)</td>
                         <td className="text-right" colSpan={2}>5 ton/ha</td>
                       </tr>
                       <tr>
-                        <td className="py-1.5">Vattenhalt</td>
+                        <td className="py-2">Vattenhalt</td>
                         <td className="text-right">~ 50 %</td>
                         <td className="text-right">~ 10–20 %</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-                <p className="text-xs text-[#6B7268]">
+                <p className="text-xs text-[#808080]">
                   Torrvikt beräknas med schablon 5 ton TS/ha. Våtvikt = Torrvikt ÷ (1 − Vattenhalt).
                   Vid {isSummer ? 'sommar' : 'vinter'} används {isSummer ? '50' : '15'} % vattenhalt som medelvärde.
                 </p>
@@ -244,59 +244,59 @@ export default function App() {
         </div>
 
         {/* Näringsnyttan */}
-        <div className="bg-white rounded-2xl shadow-[0_4px_20px_rgb(0,0,0,0.02)] p-6 mb-6">
-          <div className="flex items-center gap-2 mb-5">
-            <Leaf className="w-4 h-4 text-[#4A5D4E]" strokeWidth={1.5} />
-            <h3 className="text-sm font-medium text-[#6B7268] uppercase tracking-wider">Näringsnyttan</h3>
+        <div className="bg-white border border-[#80808020] rounded-md p-8 mb-4">
+          <div className="flex items-center gap-2.5 mb-6">
+            <Leaf className="w-4 h-4 text-[#294634]" strokeWidth={1.5} />
+            <h3 className="text-xs font-heading font-medium text-[#808080] uppercase tracking-widest">Näringsnyttan</h3>
           </div>
-          <div className="divide-y divide-[#F0F0EC]">
-            <div className="flex items-center justify-between py-3">
-              <span className="text-sm text-[#6B7268]">Mängd fosfor bortförd (elementärt P)</span>
-              <span className="font-medium text-[#2C312E]">{phosphorus.toLocaleString('sv-SE')} kg</span>
+          <div className="divide-y divide-[#80808012]">
+            <div className="flex items-center justify-between py-3.5">
+              <span className="text-sm font-body text-[#808080]">Mängd fosfor bortförd (elementärt P)</span>
+              <span className="font-heading font-medium text-[#1A1A1A]">{phosphorus.toLocaleString('sv-SE')} kg</span>
             </div>
-            <div className="flex items-center justify-between py-3">
-              <span className="text-sm text-[#6B7268]">Mängd kväve bortförd</span>
-              <span className="font-medium text-[#2C312E]">{nitrogen.toLocaleString('sv-SE')} kg</span>
+            <div className="flex items-center justify-between py-3.5">
+              <span className="text-sm font-body text-[#808080]">Mängd kväve bortförd</span>
+              <span className="font-heading font-medium text-[#1A1A1A]">{nitrogen.toLocaleString('sv-SE')} kg</span>
             </div>
-            <div className="flex items-center justify-between py-3">
-              <div className="flex items-center gap-2 text-[#6B7268]">
+            <div className="flex items-center justify-between py-3.5">
+              <div className="flex items-center gap-2 text-[#808080]">
                 <Scale className="w-4 h-4 flex-shrink-0" />
-                <span className="text-sm">Torrvikt (TS)</span>
+                <span className="text-sm font-body">Torrvikt (TS)</span>
               </div>
-              <span className="font-medium text-[#2C312E]">
+              <span className="font-heading font-medium text-[#1A1A1A]">
                 {dryWeight.toLocaleString('sv-SE', { maximumFractionDigits: 1 })} ton
               </span>
             </div>
-            <div className="flex items-center justify-between py-3">
-              <div className="flex items-center gap-2 text-[#6B7268]">
+            <div className="flex items-center justify-between py-3.5">
+              <div className="flex items-center gap-2 text-[#808080]">
                 <Scale className="w-4 h-4 flex-shrink-0" />
-                <span className="text-sm">Beräknad biomassa (våtvikt)</span>
+                <span className="text-sm font-body">Beräknad biomassa (våtvikt)</span>
               </div>
-              <span className="font-medium text-[#2C312E]">
+              <span className="font-heading font-medium text-[#1A1A1A]">
                 {wetWeight.toLocaleString('sv-SE', { maximumFractionDigits: 1 })} ton
               </span>
             </div>
-            <div className="flex items-center justify-between py-3">
-              <div className="flex items-center gap-2 text-[#6B7268]">
+            <div className="flex items-center justify-between py-3.5">
+              <div className="flex items-center gap-2 text-[#808080]">
                 <Droplets className="w-4 h-4 flex-shrink-0" />
-                <span className="text-sm">Vattenhalt</span>
+                <span className="text-sm font-body">Vattenhalt</span>
               </div>
-              <span className="font-medium text-[#2C312E]">{isSummer ? '~ 50%' : '~ 10–20%'}</span>
+              <span className="font-heading font-medium text-[#1A1A1A]">{isSummer ? '~ 50%' : '~ 10–20%'}</span>
             </div>
           </div>
 
           {/* Om näringsnyttan */}
-          <div className="mt-5">
+          <div className="mt-6">
             <button
               onClick={() => setShowNaringsInfo(!showNaringsInfo)}
-              className="flex items-center gap-2 text-sm text-[#8E948C] hover:text-[#4A5D4E] transition-colors mx-auto"
+              className="flex items-center gap-2 text-sm font-body text-[#808080] hover:text-[#294634] transition-colors mx-auto min-h-[44px]"
             >
               <Info className="w-4 h-4" />
               <span>Om näringsnyttan</span>
             </button>
             {showNaringsInfo && (
-              <div className="mt-4 bg-[#EAECE9] p-5 rounded-2xl text-sm text-[#4A5D4E] leading-relaxed">
-                <p className="mb-2">
+              <div className="mt-4 bg-[#F9F9F9] border border-[#80808015] rounded-md p-6 text-sm font-body text-[#1A1A1A] leading-relaxed">
+                <p className="mb-3">
                   Näringsnyttan visar hur mycket fosfor och kväve som faktiskt lyfts ut ur vattenekosystemet
                   vid en vasskörd — och hur stor biomassa det motsvarar.
                 </p>
@@ -310,40 +310,49 @@ export default function App() {
         </div>
 
         {/* Energi & Klimat */}
-        <div className="bg-white rounded-2xl shadow-[0_4px_20px_rgb(0,0,0,0.02)] p-6 mb-6">
-          <div className="flex items-center gap-2 mb-5">
-            <Zap className="w-4 h-4 text-[#4A5D4E]" strokeWidth={1.5} />
-            <h3 className="text-sm font-medium text-[#6B7268] uppercase tracking-wider">Energi &amp; Klimat</h3>
+        <div className="bg-white border border-[#80808020] rounded-md p-8 mb-12">
+          <div className="flex items-center gap-2.5 mb-6">
+            <Zap className="w-4 h-4 text-[#294634]" strokeWidth={1.5} />
+            <h3 className="text-xs font-heading font-medium text-[#808080] uppercase tracking-widest">Energi &amp; Klimat</h3>
           </div>
-          <div className="divide-y divide-[#F0F0EC]">
-            <div className="flex items-center justify-between py-3">
-              <span className="text-sm text-[#6B7268]">Energipotential (4,8 MWh/ton TS)</span>
-              <span className="font-medium text-[#2C312E]">
+          <div className="divide-y divide-[#80808012]">
+            <div className="flex items-center justify-between py-3.5">
+              <span className="text-sm font-body text-[#808080]">Energipotential (4,8 MWh/ton TS)</span>
+              <span className="font-heading font-medium text-[#1A1A1A]">
                 {energyMWh.toLocaleString('sv-SE', { maximumFractionDigits: 1 })} MWh
               </span>
             </div>
-            <div className="flex items-center justify-between py-3">
-              <div className="flex items-center gap-2 text-[#6B7268]">
+            <div className="flex items-center justify-between py-3.5">
+              <div className="flex items-center gap-2 text-[#808080]">
                 <Wind className="w-4 h-4 flex-shrink-0" />
-                <span className="text-sm">Bundet biogent kol (CO₂)</span>
+                <span className="text-sm font-body">Bundet biogent kol (CO₂)</span>
               </div>
-              <span className="font-medium text-[#2C312E]">
+              <span className="font-heading font-medium text-[#1A1A1A]">
                 {co2BoundTon.toLocaleString('sv-SE', { maximumFractionDigits: 1 })} ton
               </span>
             </div>
-            <div className="flex items-center justify-between py-3">
-              <span className="text-sm text-[#6B7268]">Motsvarar hushållsel för</span>
-              <span className="font-medium text-[#2C312E]">{housesEquiv.toLocaleString('sv-SE')} villor/år</span>
+            <div className="flex items-center justify-between py-3.5">
+              <span className="text-sm font-body text-[#808080]">Motsvarar hushållsel för</span>
+              <span className="font-heading font-medium text-[#1A1A1A]">{housesEquiv.toLocaleString('sv-SE')} villor/år</span>
             </div>
           </div>
-          <div className="mt-5">
-            <p className="text-xs text-[#8E948C] leading-relaxed">
+          <div className="mt-6">
+            <p className="text-xs font-body text-[#808080] leading-relaxed">
               Vass är ett snabbväxande biobränsle. Varje ton torr vass innehåller ca 4,8 MWh energi.
               Vassen binder koldioxid under sin tillväxt — genom att använda vassen som energi eller
               jordförbättring cirkulerar vi detta kol istället för att tillföra nytt fossilt kol till atmosfären.
               Jämförelsen utgår från 5 000 kWh/år i hushållsel per villa.
             </p>
           </div>
+        </div>
+
+        {/* Footer */}
+        <div className="flex items-center justify-center pb-6">
+          <img
+            src="/raws-logo/raws-logo-green@2x.png"
+            alt="Raws"
+            className="h-5 opacity-30"
+          />
         </div>
 
       </div>
