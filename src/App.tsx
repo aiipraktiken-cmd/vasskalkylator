@@ -59,7 +59,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#F9F9F9] text-[#1A1A1A] font-body flex items-center justify-center p-6 sm:p-12">
-      <div className="max-w-xl w-full">
+      <div className="max-w-[712px] w-full">
 
         {/* Header */}
         <div className="mb-16">
@@ -68,8 +68,8 @@ export default function App() {
             alt="Raws"
             className="h-7 mb-12 opacity-90"
           />
-          <h1 className="font-display text-[72px] sm:text-[96px] font-extrabold text-[#294634] leading-[0.9] tracking-tight">
-            Vass<br />kalkyl.
+          <h1 className="font-display text-[48px] sm:text-[64px] font-extrabold text-[#294634] leading-none tracking-tight whitespace-nowrap">
+            Vasskalkyl.
           </h1>
           <p className="font-body text-[#808080] text-sm mt-6 leading-relaxed">
             Beräkna reduktion av kväve och fosfor vid vasskörd
@@ -79,59 +79,62 @@ export default function App() {
         {/* Main Card */}
         <div className="bg-white border border-[#80808020] rounded-md p-8 sm:p-10 mb-4">
 
-          {/* Hektar Input */}
-          <div className="mb-10">
-            <label className="block text-xs font-heading font-medium text-[#808080] mb-4 uppercase tracking-widest">
-              Skördad yta (Hektar)
-            </label>
-            <div className="relative border-b-2 border-[#80808025] focus-within:border-[#294634] transition-colors duration-200">
-              <input
-                type="number"
-                min="0"
-                step="0.1"
-                value={hectares}
-                onChange={handleInput}
-                className="w-full text-5xl font-display font-light bg-transparent outline-none py-3 text-[#1A1A1A] placeholder-[#80808040]"
-                placeholder="0"
-              />
-              <span className="absolute right-0 bottom-4 text-xl text-[#808080] font-light font-body">
-                ha
-              </span>
-            </div>
-          </div>
+          {/* Hektar + Season — same row */}
+          <div className="flex gap-6 items-end mb-10">
 
-          {/* Season Selector */}
-          <div className="mb-10">
-            <label className="block text-xs font-heading font-medium text-[#808080] mb-4 uppercase tracking-widest">
-              Skördesäsong
-            </label>
-            <div className="grid grid-cols-2 gap-3">
-              <button
-                onClick={() => setSeason('summer')}
-                className={`flex flex-col items-center justify-center py-5 px-4 rounded-md border transition-all duration-200 min-h-[88px] ${
-                  isSummer
-                    ? 'border-[#294634] bg-[#294634] text-white'
-                    : 'border-[#80808025] bg-white text-[#808080] hover:border-[#294634] hover:text-[#294634]'
-                }`}
-              >
-                <Sun className="w-6 h-6 mb-2" strokeWidth={1.5} />
-                <span className="font-heading font-medium text-sm">Sommar</span>
-                <span className="text-xs mt-0.5 opacity-60">Juli – Sep</span>
-              </button>
-
-              <button
-                onClick={() => setSeason('winter')}
-                className={`flex flex-col items-center justify-center py-5 px-4 rounded-md border transition-all duration-200 min-h-[88px] ${
-                  !isSummer
-                    ? 'border-[#294634] bg-[#294634] text-white'
-                    : 'border-[#80808025] bg-white text-[#808080] hover:border-[#294634] hover:text-[#294634]'
-                }`}
-              >
-                <Snowflake className="w-6 h-6 mb-2" strokeWidth={1.5} />
-                <span className="font-heading font-medium text-sm">Vinter</span>
-                <span className="text-xs mt-0.5 opacity-60">Okt – Mar</span>
-              </button>
+            {/* Hektar Input */}
+            <div className="flex-1 min-w-0">
+              <label className="block text-xs font-heading font-medium text-[#808080] mb-4 uppercase tracking-widest">
+                Skördad yta (Hektar)
+              </label>
+              <div className="relative border-b-2 border-[#80808025] focus-within:border-[#294634] transition-colors duration-200">
+                <input
+                  type="number"
+                  min="0"
+                  step="0.1"
+                  value={hectares}
+                  onChange={handleInput}
+                  className="w-full text-5xl font-display font-light bg-transparent outline-none py-3 text-[#1A1A1A] placeholder-[#80808040]"
+                  placeholder="0"
+                />
+                <span className="absolute right-0 bottom-4 text-xl text-[#808080] font-light font-body">
+                  ha
+                </span>
+              </div>
             </div>
+
+            {/* Season Selector */}
+            <div className="shrink-0">
+              <label className="block text-xs font-heading font-medium text-[#808080] mb-4 uppercase tracking-widest">
+                Säsong
+              </label>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setSeason('summer')}
+                  className={`flex flex-col items-center justify-center py-3 px-4 rounded-md border transition-all duration-200 min-h-[72px] min-w-[80px] ${
+                    isSummer
+                      ? 'border-[#294634] bg-[#294634] text-white'
+                      : 'border-[#80808025] bg-white text-[#808080] hover:border-[#294634] hover:text-[#294634]'
+                  }`}
+                >
+                  <Sun className="w-5 h-5 mb-1.5" strokeWidth={1.5} />
+                  <span className="font-heading font-medium text-xs">Sommar</span>
+                </button>
+
+                <button
+                  onClick={() => setSeason('winter')}
+                  className={`flex flex-col items-center justify-center py-3 px-4 rounded-md border transition-all duration-200 min-h-[72px] min-w-[80px] ${
+                    !isSummer
+                      ? 'border-[#294634] bg-[#294634] text-white'
+                      : 'border-[#80808025] bg-white text-[#808080] hover:border-[#294634] hover:text-[#294634]'
+                  }`}
+                >
+                  <Snowflake className="w-5 h-5 mb-1.5" strokeWidth={1.5} />
+                  <span className="font-heading font-medium text-xs">Vinter</span>
+                </button>
+              </div>
+            </div>
+
           </div>
 
           {/* Results */}
