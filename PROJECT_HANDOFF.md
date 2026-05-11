@@ -1,27 +1,25 @@
 # Handoff — Vasskalkylator
-_Last updated: 2026-03-27_
+_Last updated: 2026-04-15_
 
 ## Current State
-Single-page React kalkylator för att beräkna kväve (N) och fosfor (P) vid vasskörd. Fullt fungerande och deployad på Vercel. Realtidsberäkning, sommar/vinter-säsong, kopieringsknappar för N/P, outline-titel. Koden finns på GitHub (aiipraktiken-cmd/vasskalkylator) och deployas automatiskt vid push till main.
+Single-page React kalkylator för N/P-reduktion vid vasskörd. Deployad på Vercel med auto-deploy vid push till main. Tre resultatpaneler: "Bortförd näring" (N/P + kopieringsknappar), "Näringsnyttan" (fosfor, kväve, torrvikt, våtvikt, vattenhalt) och "Energi & Klimat" (energipotential, CO₂-bindning, villojämförelse).
 
 ## This Session
-- Initierade hela projektet från scratch: GSD planning docs, Vite + React + TypeScript + Tailwind scaffold
-- `src/App.tsx` — komplett kalkylator med all logik och design
-- `vercel.json` — deploy-konfiguration klar
-- Pushade till GitHub, länkade till Vercel
-- Design-uppdatering: outline-titel (`WebkitTextStroke: 2px #4A5D4E`, text-6xl/8xl) och kopieringsknappar med Copy/Check-ikon toggle
-- Lade till kortet på `local-startpage/index.html` (mörkgrön, 1×1, SlideStudio krympte till 2-wide)
+- Ändrade torrvikt-schablon från 7,5 → **5 ton/ha** i `src/App.tsx` (`TS_SCHABLON`)
+- Uppdaterade alla infotexter och antagandetabellen med nytt värde
+- Pushat till main → Vercel
 
 ## Open Issues
-- Vercel-URL okänd — troligen `vasskalkylator.vercel.app`, men verifiera och uppdatera `local-startpage/index.html` om den avviker
+- Favicon saknas — `index.html` refererar till `/favicon.svg`
 
 ## Next Steps
-1. Verifiera Vercel-URL och uppdatera startpage-kortet om nödvändigt
-2. Eventuellt: favicon (`/favicon.svg` saknas — `index.html` refererar till den)
-3. v2-idéer: PDF-export, jämförelsevy sommar vs vinter
+1. Lägg till favicon (`public/favicon.svg`)
+2. Expert-läge: låt användaren justera TS/ha eller vattenhalt manuellt
+3. v2-idéer: jämförelsevy sommar vs vinter sida vid sida, PDF-export
 
 ## Key Context
-- Beräkningskoefficienter: sommar 100N/10P per ha, vinter 20N/2P per ha (BalticReed/finska ELY)
-- Projektkatalog: `DEV/projects/vasskalkylator/`
-- GitHub: `aiipraktiken-cmd/vasskalkylator` — Vercel deployas automatiskt på push till main
-- Startpage-kortet pekar på `https://vasskalkylator.vercel.app` — uppdatera URL vid behov
+- `src/App.tsx` — all logik och UI i en fil
+- Konstanter: `SUMMER_P/N`, `WINTER_P/N`, `TS_SCHABLON = 5`, `WATER_SUMMER = 0.50`, `WATER_WINTER = 0.15`
+- Energikonstanter: 4,8 MWh/ton TS, 1,83 ton CO₂/ton TS, 5 000 kWh/år per villa
+- GitHub: `aiipraktiken-cmd/vasskalkylator` → Vercel auto-deploy på push till main
+- Live URL: `https://vasskalkylator.vercel.app`
