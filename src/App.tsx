@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { Sun, Snowflake, Sprout, Droplets, Info, Scale, Copy, Check, Leaf, Zap, Wind, Car, Flame, House, Wheat, CalendarDays } from 'lucide-react'
-import { fetchStats, trackVisit, trackCalculation, type Stats } from './supabase'
+import { trackVisit, trackCalculation } from './supabase'
 
 type Season = 'summer' | 'winter'
 type Copied = 'naring' | 'naringsnytta' | 'energi' | null
@@ -25,7 +25,6 @@ export default function App() {
   const [showNaringsInfo, setShowNaringsInfo] = useState(false)
   const [showEnergiInfo, setShowEnergiInfo] = useState(false)
   const [copied, setCopied] = useState<Copied>(null)
-  const [stats, setStats] = useState<Stats | null>(null)
   const calcTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const visitTracked = useRef(false)
 
@@ -33,15 +32,13 @@ export default function App() {
     if (visitTracked.current) return
     visitTracked.current = true
     trackVisit()
-    fetchStats().then(setStats)
   }, [])
 
   function scheduleCalcTracking(ha: number) {
     if (ha === 0) return
     if (calcTimerRef.current) clearTimeout(calcTimerRef.current)
-    calcTimerRef.current = setTimeout(async () => {
-      await trackCalculation(ha)
-      fetchStats().then(setStats)
+    calcTimerRef.current = setTimeout(() => {
+      trackCalculation(ha)
     }, 1500)
   }
 
