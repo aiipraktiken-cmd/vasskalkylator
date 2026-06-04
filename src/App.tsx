@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Sun, Snowflake, Sprout, Droplets, Info, Scale, Copy, Check, Leaf, Zap, Wind, Car, Flame, House } from 'lucide-react'
 
 type Season = 'summer' | 'winter'
-type Copied = 'nitrogen' | 'phosphorus' | null
+type Copied = 'naring' | 'naringsnytta' | 'energi' | null
 
 // Näring per hektar (kg/ha)
 const SUMMER_P = 10
@@ -25,8 +25,8 @@ export default function App() {
   const [showEnergiInfo, setShowEnergiInfo] = useState(false)
   const [copied, setCopied] = useState<Copied>(null)
 
-  function copy(value: number, which: Copied) {
-    navigator.clipboard.writeText(String(value))
+  function copy(text: string, which: Copied) {
+    navigator.clipboard.writeText(text)
     setCopied(which)
     setTimeout(() => setCopied(null), 1800)
   }
@@ -160,16 +160,6 @@ export default function App() {
                   <span className="text-sm text-[#eddaa1] font-body">kg</span>
                 </div>
                 <p className="text-sm mt-2 font-heading font-medium">Kväve (N)</p>
-                <button
-                  onClick={() => copy(nitrogen, 'nitrogen')}
-                  className="mt-3 flex items-center gap-1.5 text-xs text-[#eddaa1] hover:text-white transition-colors duration-200 cursor-pointer min-h-[44px]"
-                  aria-label="Kopiera kväve-värde"
-                >
-                  {copied === 'nitrogen'
-                    ? <><Check className="w-3.5 h-3.5" />Kopierat</>
-                    : <><Copy className="w-3.5 h-3.5" />Kopiera</>
-                  }
-                </button>
               </div>
               <div>
                 <div className="flex items-baseline gap-1.5">
@@ -179,18 +169,15 @@ export default function App() {
                   <span className="text-sm text-[#eddaa1] font-body">kg</span>
                 </div>
                 <p className="text-sm mt-2 font-heading font-medium">Fosfor (P)</p>
-                <button
-                  onClick={() => copy(phosphorus, 'phosphorus')}
-                  className="mt-3 flex items-center gap-1.5 text-xs text-[#eddaa1] hover:text-white transition-colors duration-200 cursor-pointer min-h-[44px]"
-                  aria-label="Kopiera fosfor-värde"
-                >
-                  {copied === 'phosphorus'
-                    ? <><Check className="w-3.5 h-3.5" />Kopierat</>
-                    : <><Copy className="w-3.5 h-3.5" />Kopiera</>
-                  }
-                </button>
               </div>
             </div>
+            <button
+              onClick={() => copy(`Kväve (N): ${nitrogen.toLocaleString('sv-SE')} kg\nFosfor (P): ${phosphorus.toLocaleString('sv-SE')} kg`, 'naring')}
+              className="mt-6 flex items-center gap-1.5 text-xs text-[#eddaa1] hover:text-white transition-colors duration-200 cursor-pointer min-h-[44px] relative z-10"
+              aria-label="Kopiera bortförd näring"
+            >
+              {copied === 'naring' ? <><Check className="w-3.5 h-3.5" />Kopierat</> : <><Copy className="w-3.5 h-3.5" />Kopiera</>}
+            </button>
           </div>
 
           {/* Om beräkningarna */}
@@ -298,6 +285,13 @@ export default function App() {
             </div>
           </div>
 
+          <button
+            onClick={() => copy(`Fosfor bortförd: ${phosphorus.toLocaleString('sv-SE')} kg\nKväve bortförd: ${nitrogen.toLocaleString('sv-SE')} kg\nTorrvikt: ${dryWeight.toLocaleString('sv-SE', { maximumFractionDigits: 1 })} ton\nVåtvikt: ${wetWeight.toLocaleString('sv-SE', { maximumFractionDigits: 1 })} ton`, 'naringsnytta')}
+            className="mt-2 flex items-center gap-1.5 text-xs text-[#808080] hover:text-[#294634] transition-colors cursor-pointer min-h-[44px]"
+            aria-label="Kopiera näringsnyttan"
+          >
+            {copied === 'naringsnytta' ? <><Check className="w-3.5 h-3.5" />Kopierat</> : <><Copy className="w-3.5 h-3.5" />Kopiera</>}
+          </button>
           {/* Om näringsnyttan */}
           <div className="mt-6">
             <button
@@ -371,6 +365,13 @@ export default function App() {
             >
               <Info className="w-4 h-4" />
               <span>Om energi &amp; klimat</span>
+            </button>
+            <button
+              onClick={() => copy(`Energipotential: ${energyMWh.toLocaleString('sv-SE', { maximumFractionDigits: 1 })} MWh\nBundet CO₂: ${co2BoundTon.toLocaleString('sv-SE', { maximumFractionDigits: 1 })} ton\nHushållsel: ${housesEquiv.toLocaleString('sv-SE')} villor/år\nElbilsräckvidd: ${evKm.toLocaleString('sv-SE')} km`, 'energi')}
+              className="flex items-center gap-1.5 text-xs text-[#808080] hover:text-[#294634] transition-colors cursor-pointer min-h-[44px]"
+              aria-label="Kopiera energi & klimat"
+            >
+              {copied === 'energi' ? <><Check className="w-3.5 h-3.5" />Kopierat</> : <><Copy className="w-3.5 h-3.5" />Kopiera</>}
             </button>
             {showEnergiInfo && (
               <div className="mt-4 bg-[#F9F9F9] border border-[#80808015] rounded-md p-6 text-sm font-body text-[#1A1A1A] leading-relaxed">
