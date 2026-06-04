@@ -69,7 +69,7 @@ export default function App() {
             <img
               src="/raws-logo/raws-logo-green@2x.png"
               alt="Raws"
-              className="h-7 mb-12 opacity-90 hover:opacity-100 transition-opacity duration-200"
+              className="h-10 mb-12 opacity-90 hover:opacity-100 transition-opacity duration-200"
             />
           </a>
           <h1 className="font-display text-[40px] sm:text-[64px] font-extrabold text-[#294634] leading-none tracking-tight">
