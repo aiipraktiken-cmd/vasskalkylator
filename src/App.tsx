@@ -70,7 +70,7 @@ export default function App() {
             className="h-7 mb-12 opacity-90"
           />
           <h1 className="font-display text-[40px] sm:text-[64px] font-extrabold text-[#294634] leading-none tracking-tight">
-            Vasskalkyl.
+            Vasskalkylatorn.
           </h1>
           <p className="font-body text-[#808080] text-sm mt-6 leading-relaxed">
             Beräkna reduktion av kväve och fosfor vid vasskörd
