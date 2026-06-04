@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Sun, Snowflake, Sprout, Droplets, Info, Scale, Copy, Check, Leaf, Zap, Wind, Car } from 'lucide-react'
+import { Sun, Snowflake, Sprout, Droplets, Info, Scale, Copy, Check, Leaf, Zap, Wind, Car, Flame, House } from 'lucide-react'
 
 type Season = 'summer' | 'winter'
 type Copied = 'nitrogen' | 'phosphorus' | null
@@ -326,7 +326,10 @@ export default function App() {
           </div>
           <div className="divide-y divide-[#80808012]">
             <div className="flex items-center justify-between py-3.5">
-              <span className="text-sm font-body text-[#808080]">Energipotential (4,8 MWh/ton TS)</span>
+              <div className="flex items-center gap-2 text-[#808080]">
+                <Flame className="w-4 h-4 flex-shrink-0" />
+                <span className="text-sm font-body">Energipotential (4,8 MWh/ton TS)</span>
+              </div>
               <span className="font-heading font-medium text-[#1A1A1A]">
                 {energyMWh.toLocaleString('sv-SE', { maximumFractionDigits: 1 })} MWh
               </span>
@@ -341,7 +344,10 @@ export default function App() {
               </span>
             </div>
             <div className="flex items-center justify-between py-3.5">
-              <span className="text-sm font-body text-[#808080]">Motsvarar hushållsel (exkl. uppvärmning) för</span>
+              <div className="flex items-center gap-2 text-[#808080]">
+                <House className="w-4 h-4 flex-shrink-0" />
+                <span className="text-sm font-body">Motsvarar hushållsel (exkl. uppvärmning) för</span>
+              </div>
               <span className="font-heading font-medium text-[#1A1A1A]">{housesEquiv.toLocaleString('sv-SE')} villor/år</span>
             </div>
             <div className="flex items-center justify-between py-3.5">
