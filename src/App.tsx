@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Sun, Snowflake, Sprout, Droplets, Info, Scale, Copy, Check, Leaf, Zap, Wind, Car, Flame, House } from 'lucide-react'
+import { Sun, Snowflake, Sprout, Droplets, Info, Scale, Copy, Check, Leaf, Zap, Wind, Car, Flame, House, Wheat } from 'lucide-react'
 
 type Season = 'summer' | 'winter'
 type Copied = 'naring' | 'naringsnytta' | 'energi' | null
@@ -215,7 +215,7 @@ export default function App() {
               className="h-10 mb-12 opacity-90 hover:opacity-100 transition-opacity duration-200"
             />
           </a>
-          <h1 className="font-display text-[40px] sm:text-[64px] font-extrabold text-[#294634] leading-none tracking-tight">
+          <h1 className="font-display text-[40px] sm:text-[64px] font-extrabold text-[#1A1A1A] leading-none tracking-tight">
             Vasskalkylatorn
           </h1>
           <p className="font-body text-[#808080] text-sm mt-6 leading-relaxed">
@@ -291,7 +291,8 @@ export default function App() {
               className="absolute -right-6 -bottom-6 w-44 h-44 text-white opacity-5"
               strokeWidth={1}
             />
-            <h3 className="text-xs font-heading font-medium text-[#eddaa1] mb-8 uppercase tracking-widest">
+            <h3 className="text-xs font-heading font-medium text-[#eddaa1] mb-8 uppercase tracking-widest flex items-center gap-2">
+              <Wheat className="w-3.5 h-3.5" strokeWidth={1.5} />
               Bortförd näring
             </h3>
             <div className="grid grid-cols-2 gap-4 sm:gap-8 relative z-10">
