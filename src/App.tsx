@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Sun, Snowflake, Sprout, Droplets, Info, Scale, Copy, Check, Leaf, Zap, Wind, Car, Flame, House, Wheat } from 'lucide-react'
+import { Sun, Snowflake, Sprout, Droplets, Info, Scale, Copy, Check, Leaf, Zap, Wind, Car, Flame, House, Wheat, CalendarDays } from 'lucide-react'
 
 type Season = 'summer' | 'winter'
 type Copied = 'naring' | 'naringsnytta' | 'energi' | null
@@ -253,7 +253,8 @@ export default function App() {
 
             {/* Season Selector */}
             <div className="shrink-0">
-              <label className="block text-xs font-heading font-medium text-[#808080] mb-4 uppercase tracking-widest">
+              <label className="flex items-center gap-1.5 text-xs font-heading font-medium text-[#808080] mb-4 uppercase tracking-widest">
+                <CalendarDays className="w-3.5 h-3.5" strokeWidth={1.5} />
                 Säsong
               </label>
               <div className="flex gap-2 justify-center sm:justify-start">
