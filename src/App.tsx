@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Sun, Snowflake, Sprout, Droplets, Info, Scale, Copy, Check, Leaf, Zap, Wind } from 'lucide-react'
+import { Sun, Snowflake, Sprout, Droplets, Info, Scale, Copy, Check, Leaf, Zap, Wind, Car } from 'lucide-react'
 
 type Season = 'summer' | 'winter'
 type Copied = 'nitrogen' | 'phosphorus' | null
@@ -46,6 +46,7 @@ export default function App() {
   const energyMWh = dryWeight * 4.8
   const co2BoundTon = dryWeight * 1.83
   const housesEquiv = Math.round(energyMWh * 1000 / 5000)
+  const evKm = Math.round(energyMWh * 1000 / 1.6) * 10
 
   function handleInput(e: React.ChangeEvent<HTMLInputElement>) {
     const val = e.target.value
@@ -343,6 +344,15 @@ export default function App() {
               <span className="text-sm font-body text-[#808080]">Motsvarar hushållsel (exkl. uppvärmning) för</span>
               <span className="font-heading font-medium text-[#1A1A1A]">{housesEquiv.toLocaleString('sv-SE')} villor/år</span>
             </div>
+            <div className="flex items-center justify-between py-3.5">
+              <div className="flex items-center gap-2 text-[#808080]">
+                <Car className="w-4 h-4 flex-shrink-0" />
+                <span className="text-sm font-body">Räckvidd elbil (1,6 kWh/mil)</span>
+              </div>
+              <span className="font-heading font-medium text-[#1A1A1A]">
+                {evKm.toLocaleString('sv-SE')} km
+              </span>
+            </div>
           </div>
           <div className="mt-6">
             <p className="text-xs font-body text-[#808080] leading-relaxed">
@@ -350,6 +360,7 @@ export default function App() {
               Vassen binder koldioxid under sin tillväxt — genom att använda vassen som energi eller
               jordförbättring cirkulerar vi detta kol istället för att tillföra nytt fossilt kol till atmosfären.
               Jämförelsen utgår från 5 000 kWh/år i hushållsel per villa (exklusive uppvärmning).
+              Elbilsräckvidden beräknas med genomsnittsförbrukning 1,6 kWh/mil för en mellanstor bil.
             </p>
           </div>
         </div>
