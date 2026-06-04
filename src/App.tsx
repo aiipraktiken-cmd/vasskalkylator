@@ -252,7 +252,7 @@ export default function App() {
             </div>
 
             {/* Season Selector */}
-            <div className="shrink-0">
+            <div className="shrink-0 flex flex-col items-center sm:items-start">
               <label className="block text-xs font-heading font-medium text-[#808080] mb-4 uppercase tracking-widest">
                 Säsong
               </label>
@@ -295,7 +295,7 @@ export default function App() {
               Bortförd näring
             </h3>
             <div className="grid grid-cols-2 gap-4 sm:gap-8 relative z-10">
-              <div>
+              <div className="flex flex-col items-center text-center">
                 <div className="flex items-baseline gap-1.5">
                   <span className="text-3xl sm:text-5xl font-display font-light tracking-tight break-all">
                     {nitrogen.toLocaleString('sv-SE')}
@@ -304,7 +304,7 @@ export default function App() {
                 </div>
                 <p className="text-sm mt-2 font-heading font-medium">Kväve (N)</p>
               </div>
-              <div>
+              <div className="flex flex-col items-center text-center">
                 <div className="flex items-baseline gap-1.5">
                   <span className="text-3xl sm:text-5xl font-display font-light tracking-tight break-all">
                     {phosphorus.toLocaleString('sv-SE')}
