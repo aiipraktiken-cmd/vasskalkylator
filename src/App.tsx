@@ -387,12 +387,11 @@ export default function App() {
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-center pb-6">
-          <img
-            src="/raws-logo/raws-logo-green@2x.png"
-            alt="Raws"
-            className="h-5 opacity-70"
-          />
+        <div className="flex flex-col items-center gap-3 pb-8 pt-4">
+          <a href="https://raws.se" target="_blank" rel="noopener noreferrer">
+            <img src="/raws-logo/raws-logo-green@2x.png" alt="Raws" className="h-8" />
+          </a>
+          <p className="text-xs font-body text-[#808080] tracking-wide">Nature's materials for a world beyond plastic</p>
         </div>
 
       </div>
