@@ -80,8 +80,8 @@ export default function App() {
         {/* Main Card */}
         <div className="bg-white border border-[#80808020] rounded-md p-8 sm:p-10 mb-4">
 
-          {/* Hektar + Season — same row */}
-          <div className="flex gap-6 items-end mb-10">
+          {/* Hektar + Season — stacked on mobile, row on sm+ */}
+          <div className="flex flex-col sm:flex-row gap-6 sm:items-end mb-10">
 
             {/* Hektar Input */}
             <div className="flex-1 min-w-0">
@@ -96,7 +96,7 @@ export default function App() {
                   step="0.1"
                   value={hectares}
                   onChange={handleInput}
-                  className="w-full text-5xl font-display font-light bg-transparent outline-none py-3 text-[#1A1A1A] placeholder-[#80808040]"
+                  className="w-full text-5xl font-display font-light bg-transparent outline-none py-3 text-[#1A1A1A] placeholder-[#80808040] pr-12"
                   placeholder="0"
                 />
                 <span className="absolute right-0 bottom-4 text-xl text-[#808080] font-light font-body">
@@ -113,25 +113,25 @@ export default function App() {
               <div className="flex gap-2">
                 <button
                   onClick={() => setSeason('summer')}
-                  className={`flex flex-col items-center justify-center py-3 px-4 rounded-md border transition-all duration-200 min-h-[72px] min-w-[80px] ${
+                  className={`flex flex-col items-center justify-center py-2 px-4 rounded-md border transition-all duration-200 min-h-[56px] min-w-[72px] cursor-pointer ${
                     isSummer
                       ? 'border-[#294634] bg-[#294634] text-white'
                       : 'border-[#80808025] bg-white text-[#808080] hover:border-[#294634] hover:text-[#294634]'
                   }`}
                 >
-                  <Sun className="w-5 h-5 mb-1.5" strokeWidth={1.5} />
+                  <Sun className="w-4 h-4 mb-1" strokeWidth={1.5} />
                   <span className="font-heading font-medium text-xs">Sommar</span>
                 </button>
 
                 <button
                   onClick={() => setSeason('winter')}
-                  className={`flex flex-col items-center justify-center py-3 px-4 rounded-md border transition-all duration-200 min-h-[72px] min-w-[80px] ${
+                  className={`flex flex-col items-center justify-center py-2 px-4 rounded-md border transition-all duration-200 min-h-[56px] min-w-[72px] cursor-pointer ${
                     !isSummer
                       ? 'border-[#294634] bg-[#294634] text-white'
                       : 'border-[#80808025] bg-white text-[#808080] hover:border-[#294634] hover:text-[#294634]'
                   }`}
                 >
-                  <Snowflake className="w-5 h-5 mb-1.5" strokeWidth={1.5} />
+                  <Snowflake className="w-4 h-4 mb-1" strokeWidth={1.5} />
                   <span className="font-heading font-medium text-xs">Vinter</span>
                 </button>
               </div>
@@ -151,10 +151,10 @@ export default function App() {
             <div className="grid grid-cols-2 gap-8 relative z-10">
               <div>
                 <div className="flex items-baseline gap-1.5">
-                  <span className="text-5xl font-display font-light tracking-tight">
+                  <span className="text-3xl sm:text-5xl font-display font-light tracking-tight break-all">
                     {nitrogen.toLocaleString('sv-SE')}
                   </span>
-                  <span className="text-base text-[#eddaa1] font-body">kg</span>
+                  <span className="text-sm text-[#eddaa1] font-body">kg</span>
                 </div>
                 <p className="text-sm mt-2 font-heading font-medium">Kväve (N)</p>
                 <button
@@ -170,12 +170,12 @@ export default function App() {
               </div>
               <div>
                 <div className="flex items-baseline gap-1.5">
-                  <span className="text-5xl font-display font-light tracking-tight">
+                  <span className="text-3xl sm:text-5xl font-display font-light tracking-tight break-all">
                     {phosphorus.toLocaleString('sv-SE')}
                   </span>
-                  <span className="text-base text-[#eddaa1] font-body">kg</span>
+                  <span className="text-sm text-[#eddaa1] font-body">kg</span>
                 </div>
-                <p className="text-sm mt-2 font-heading font-medium">Fosfor (elementärt P)</p>
+                <p className="text-sm mt-2 font-heading font-medium leading-snug">Fosfor<br className="sm:hidden" /> (elementärt P)</p>
                 <button
                   onClick={() => copy(phosphorus, 'phosphorus')}
                   className="mt-3 flex items-center gap-1.5 text-xs text-[#eddaa1] hover:text-white transition-colors duration-200 cursor-pointer min-h-[44px]"
