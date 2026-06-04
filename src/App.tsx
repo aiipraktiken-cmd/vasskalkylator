@@ -241,6 +241,11 @@ export default function App() {
                   Torrvikt beräknas med schablon 5 ton TS/ha. Våtvikt = Torrvikt ÷ (1 − Vattenhalt).
                   Vid {isSummer ? 'sommar' : 'vinter'} används {isSummer ? '50–80 % (markskörd ~50 %, vattenskörd upp till 80 %)' : '10–30 %'} som vattenhalt enligt BalticReeds logistikrapport.
                 </p>
+                {!isSummer && (
+                  <p className="text-xs text-[#808080] border-l-2 border-[#80808030] pl-3">
+                    <strong>OBS — estimerade schabloner:</strong> Näringsvärden för vinterskörden (N och P) baseras på växtfysiologiska antaganden — att vassen återför ca 80 % av näringen till rotsystemet inför vintern. Konkreta fältmätvärden saknas i befintliga underlag. Värdena bör betraktas som indikativa tills mätdata från exempelvis ELY-centralen finns på plats.
+                  </p>
+                )}
               </div>
             )}
           </div>
