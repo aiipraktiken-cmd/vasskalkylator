@@ -60,8 +60,151 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-dvh bg-[#F9F9F9] text-[#1A1A1A] font-body flex items-center justify-center p-6 sm:p-12">
-      <div className="max-w-[712px] w-full">
+    <div className="relative min-h-dvh bg-[#F9F9F9] text-[#1A1A1A] font-body flex items-center justify-center p-6 sm:p-12">
+
+      {/* Reed background illustration — RAWS brand asset, mix-blend-multiply removes white bg */}
+      <img
+        src="/raws-reeds.jpg"
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none mix-blend-multiply grayscale opacity-30"
+      />
+      {false && <svg aria-hidden="true">
+        {/* ~55 reeds, tight spacing ~22 units, wider w + higher c → overlapping like a reed bed */}
+        {[
+          { x: 15,   w: 6, h: 142, c: 8,   op: 0.08 },
+          { x: 34,   w: 3, h: 188, c: -5,  op: 0.07 },
+          { x: 52,   w: 7, h: 112, c: 6,   op: 0.09 },
+          { x: 72,   w: 4, h: 198, c: -9,  op: 0.08 },
+          { x: 90,   w: 5, h: 158, c: 7,   op: 0.07 },
+          { x: 110,  w: 3, h: 95,  c: -6,  op: 0.06 },
+          { x: 128,  w: 8, h: 175, c: 8,   op: 0.09 },
+          { x: 150,  w: 4, h: 215, c: -7,  op: 0.08 },
+          { x: 168,  w: 6, h: 128, c: 9,   op: 0.07 },
+          { x: 188,  w: 3, h: 185, c: -5,  op: 0.08 },
+          { x: 207,  w: 7, h: 102, c: 6,   op: 0.06 },
+          { x: 228,  w: 5, h: 192, c: -8,  op: 0.09 },
+          { x: 248,  w: 4, h: 148, c: 7,   op: 0.07 },
+          { x: 265,  w: 8, h: 218, c: -9,  op: 0.08 },
+          { x: 288,  w: 3, h: 118, c: 8,   op: 0.06 },
+          { x: 308,  w: 6, h: 178, c: -6,  op: 0.09 },
+          { x: 328,  w: 4, h: 138, c: 7,   op: 0.08 },
+          { x: 348,  w: 7, h: 200, c: -8,  op: 0.07 },
+          { x: 368,  w: 3, h: 155, c: 9,   op: 0.06 },
+          { x: 386,  w: 5, h: 92,  c: -5,  op: 0.08 },
+          { x: 408,  w: 8, h: 182, c: 6,   op: 0.09 },
+          { x: 428,  w: 4, h: 125, c: -9,  op: 0.07 },
+          { x: 448,  w: 6, h: 210, c: 8,   op: 0.08 },
+          { x: 468,  w: 3, h: 162, c: -7,  op: 0.06 },
+          { x: 488,  w: 7, h: 108, c: 9,   op: 0.09 },
+          { x: 508,  w: 5, h: 195, c: -6,  op: 0.08 },
+          { x: 528,  w: 4, h: 142, c: 7,   op: 0.07 },
+          { x: 548,  w: 8, h: 175, c: -8,  op: 0.09 },
+          { x: 568,  w: 3, h: 218, c: 6,   op: 0.06 },
+          { x: 588,  w: 6, h: 132, c: -9,  op: 0.08 },
+          { x: 608,  w: 4, h: 188, c: 8,   op: 0.07 },
+          { x: 628,  w: 7, h: 98,  c: -5,  op: 0.09 },
+          { x: 648,  w: 5, h: 165, c: 7,   op: 0.08 },
+          { x: 668,  w: 3, h: 205, c: -8,  op: 0.06 },
+          { x: 688,  w: 8, h: 148, c: 9,   op: 0.09 },
+          { x: 708,  w: 4, h: 178, c: -6,  op: 0.07 },
+          { x: 728,  w: 6, h: 115, c: 7,   op: 0.08 },
+          { x: 748,  w: 3, h: 192, c: -9,  op: 0.06 },
+          { x: 768,  w: 7, h: 158, c: 8,   op: 0.09 },
+          { x: 788,  w: 5, h: 212, c: -5,  op: 0.08 },
+          { x: 808,  w: 4, h: 128, c: 6,   op: 0.07 },
+          { x: 828,  w: 8, h: 182, c: -8,  op: 0.09 },
+          { x: 848,  w: 3, h: 95,  c: 9,   op: 0.06 },
+          { x: 868,  w: 6, h: 172, c: -7,  op: 0.08 },
+          { x: 888,  w: 4, h: 215, c: 6,   op: 0.07 },
+          { x: 908,  w: 7, h: 138, c: -9,  op: 0.09 },
+          { x: 928,  w: 5, h: 185, c: 8,   op: 0.08 },
+          { x: 948,  w: 3, h: 108, c: -6,  op: 0.06 },
+          { x: 968,  w: 8, h: 195, c: 7,   op: 0.09 },
+          { x: 988,  w: 4, h: 152, c: -8,  op: 0.07 },
+          { x: 1008, w: 6, h: 175, c: 9,   op: 0.08 },
+          { x: 1028, w: 3, h: 222, c: -5,  op: 0.06 },
+          { x: 1048, w: 7, h: 118, c: 6,   op: 0.09 },
+          { x: 1068, w: 5, h: 188, c: -9,  op: 0.08 },
+          { x: 1088, w: 4, h: 145, c: 8,   op: 0.07 },
+          { x: 1108, w: 8, h: 205, c: -7,  op: 0.09 },
+          { x: 1128, w: 3, h: 132, c: 9,   op: 0.06 },
+          { x: 1148, w: 6, h: 178, c: -6,  op: 0.08 },
+          { x: 1168, w: 4, h: 102, c: 7,   op: 0.07 },
+          { x: 1188, w: 7, h: 192, c: -8,  op: 0.09 },
+          { x: 1208, w: 5, h: 158, c: 9,   op: 0.08 },
+          { x: 1228, w: 3, h: 215, c: -5,  op: 0.06 },
+          { x: 1248, w: 8, h: 125, c: 6,   op: 0.09 },
+          { x: 1268, w: 4, h: 182, c: -9,  op: 0.07 },
+          { x: 1288, w: 6, h: 148, c: 8,   op: 0.08 },
+          { x: 1308, w: 3, h: 198, c: -7,  op: 0.06 },
+          { x: 1328, w: 7, h: 112, c: 9,   op: 0.09 },
+          { x: 1348, w: 5, h: 172, c: -6,  op: 0.08 },
+          { x: 1368, w: 4, h: 218, c: 7,   op: 0.07 },
+          { x: 1388, w: 8, h: 138, c: -8,  op: 0.09 },
+          { x: 1408, w: 3, h: 185, c: 9,   op: 0.06 },
+          { x: 1425, w: 6, h: 155, c: -5,  op: 0.08 },
+        ].map((r, i) => (
+          <path
+            key={i}
+            d={`M${r.x - r.w / 2} 910 Q${r.x - r.w / 3 + r.c * 0.3} ${905 - r.h / 2} ${r.x + r.c} ${900 - r.h} Q${r.x + r.c + r.w / 3} ${905 - r.h / 2} ${r.x + r.w / 2} 910 Z`}
+            fill="#294634"
+            opacity={r.op}
+          />
+        ))}
+
+        {/* Second layer — shorter, denser, slightly higher opacity for foreground depth */}
+        {[
+          { x: 22,   w: 8, h: 72,  c: -7,  op: 0.12 },
+          { x: 44,   w: 5, h: 58,  c: 9,   op: 0.10 },
+          { x: 62,   w: 9, h: 85,  c: -6,  op: 0.13 },
+          { x: 85,   w: 4, h: 62,  c: 8,   op: 0.11 },
+          { x: 105,  w: 7, h: 78,  c: -9,  op: 0.12 },
+          { x: 135,  w: 5, h: 55,  c: 7,   op: 0.10 },
+          { x: 160,  w: 9, h: 90,  c: -6,  op: 0.13 },
+          { x: 195,  w: 4, h: 68,  c: 9,   op: 0.11 },
+          { x: 220,  w: 8, h: 80,  c: -8,  op: 0.12 },
+          { x: 258,  w: 5, h: 60,  c: 7,   op: 0.10 },
+          { x: 295,  w: 7, h: 88,  c: -9,  op: 0.13 },
+          { x: 332,  w: 4, h: 65,  c: 8,   op: 0.11 },
+          { x: 370,  w: 9, h: 75,  c: -7,  op: 0.12 },
+          { x: 418,  w: 5, h: 56,  c: 9,   op: 0.10 },
+          { x: 458,  w: 8, h: 92,  c: -6,  op: 0.13 },
+          { x: 498,  w: 4, h: 70,  c: 7,   op: 0.11 },
+          { x: 538,  w: 7, h: 82,  c: -9,  op: 0.12 },
+          { x: 578,  w: 5, h: 60,  c: 8,   op: 0.10 },
+          { x: 618,  w: 9, h: 86,  c: -7,  op: 0.13 },
+          { x: 658,  w: 4, h: 66,  c: 9,   op: 0.11 },
+          { x: 698,  w: 8, h: 78,  c: -6,  op: 0.12 },
+          { x: 738,  w: 5, h: 58,  c: 7,   op: 0.10 },
+          { x: 778,  w: 7, h: 90,  c: -9,  op: 0.13 },
+          { x: 818,  w: 4, h: 68,  c: 8,   op: 0.11 },
+          { x: 858,  w: 9, h: 80,  c: -7,  op: 0.12 },
+          { x: 898,  w: 5, h: 62,  c: 9,   op: 0.10 },
+          { x: 938,  w: 8, h: 88,  c: -6,  op: 0.13 },
+          { x: 978,  w: 4, h: 72,  c: 7,   op: 0.11 },
+          { x: 1018, w: 7, h: 82,  c: -9,  op: 0.12 },
+          { x: 1058, w: 5, h: 56,  c: 8,   op: 0.10 },
+          { x: 1098, w: 9, h: 92,  c: -7,  op: 0.13 },
+          { x: 1138, w: 4, h: 66,  c: 9,   op: 0.11 },
+          { x: 1178, w: 8, h: 76,  c: -6,  op: 0.12 },
+          { x: 1218, w: 5, h: 60,  c: 7,   op: 0.10 },
+          { x: 1258, w: 7, h: 88,  c: -9,  op: 0.13 },
+          { x: 1298, w: 4, h: 70,  c: 8,   op: 0.11 },
+          { x: 1338, w: 9, h: 80,  c: -7,  op: 0.12 },
+          { x: 1378, w: 5, h: 62,  c: 9,   op: 0.10 },
+          { x: 1415, w: 8, h: 86,  c: -6,  op: 0.13 },
+        ].map((r, i) => (
+          <path
+            key={`b${i}`}
+            d={`M${r.x - r.w / 2} 910 Q${r.x - r.w / 3 + r.c * 0.3} ${905 - r.h / 2} ${r.x + r.c} ${900 - r.h} Q${r.x + r.c + r.w / 3} ${905 - r.h / 2} ${r.x + r.w / 2} 910 Z`}
+            fill="#294634"
+            opacity={r.op}
+          />
+        ))}
+      </svg>}
+
+      <div className="relative z-10 max-w-[712px] w-full">
 
         {/* Header */}
         <div className="mb-16 text-center flex flex-col items-center">
