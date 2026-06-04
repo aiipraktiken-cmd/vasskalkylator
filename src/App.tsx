@@ -252,11 +252,11 @@ export default function App() {
             </div>
 
             {/* Season Selector */}
-            <div className="shrink-0 flex flex-col items-center sm:items-start">
+            <div className="shrink-0">
               <label className="block text-xs font-heading font-medium text-[#808080] mb-4 uppercase tracking-widest">
                 Säsong
               </label>
-              <div className="flex gap-2">
+              <div className="flex gap-2 justify-center sm:justify-start">
                 <button
                   onClick={() => setSeason('summer')}
                   className={`flex flex-col items-center justify-center py-2 px-4 rounded-md border transition-all duration-200 min-h-[56px] min-w-[72px] cursor-pointer ${
