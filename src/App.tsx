@@ -227,7 +227,7 @@ export default function App() {
         <div className="bg-white border border-[#80808020] rounded-md p-8 sm:p-10 mb-4">
 
           {/* Hektar + Season — stacked on mobile, row on sm+ */}
-          <div className="flex flex-col sm:flex-row gap-6 sm:items-end mb-10">
+          <div className="flex flex-col sm:flex-row gap-6 sm:items-start mb-10">
 
             {/* Hektar Input */}
             <div className="flex-1 min-w-0">
@@ -316,13 +316,6 @@ export default function App() {
                 <p className="text-sm mt-2 font-heading font-medium">Fosfor (P)</p>
               </div>
             </div>
-            <button
-              onClick={() => copy(`Kväve (N): ${nitrogen.toLocaleString('sv-SE')} kg\nFosfor (P): ${phosphorus.toLocaleString('sv-SE')} kg`, 'naring')}
-              className="mt-6 flex items-center gap-1.5 text-xs text-[#eddaa1] hover:text-white transition-colors duration-200 cursor-pointer min-h-[44px] relative z-10"
-              aria-label="Kopiera bortförd näring"
-            >
-              {copied === 'naring' ? <><Check className="w-3.5 h-3.5" />Kopierat</> : <><Copy className="w-3.5 h-3.5" />Kopiera</>}
-            </button>
           </div>
 
           {/* Om beräkningarna */}
@@ -386,6 +379,13 @@ export default function App() {
               </div>
             )}
           </div>
+          <button
+            onClick={() => copy(`Kväve (N): ${nitrogen.toLocaleString('sv-SE')} kg\nFosfor (P): ${phosphorus.toLocaleString('sv-SE')} kg`, 'naring')}
+            className="mt-2 flex items-center gap-1.5 text-xs text-[#808080] hover:text-[#294634] transition-colors cursor-pointer min-h-[44px]"
+            aria-label="Kopiera bortförd näring"
+          >
+            {copied === 'naring' ? <><Check className="w-3.5 h-3.5" />Kopierat</> : <><Copy className="w-3.5 h-3.5" />Kopiera</>}
+          </button>
         </div>
 
         {/* Näringsnyttan */}
@@ -430,13 +430,6 @@ export default function App() {
             </div>
           </div>
 
-          <button
-            onClick={() => copy(`Fosfor bortförd: ${phosphorus.toLocaleString('sv-SE')} kg\nKväve bortförd: ${nitrogen.toLocaleString('sv-SE')} kg\nTorrvikt: ${dryWeight.toLocaleString('sv-SE', { maximumFractionDigits: 1 })} ton\nVåtvikt: ${wetWeight.toLocaleString('sv-SE', { maximumFractionDigits: 1 })} ton`, 'naringsnytta')}
-            className="mt-2 flex items-center gap-1.5 text-xs text-[#808080] hover:text-[#294634] transition-colors cursor-pointer min-h-[44px]"
-            aria-label="Kopiera näringsnyttan"
-          >
-            {copied === 'naringsnytta' ? <><Check className="w-3.5 h-3.5" />Kopierat</> : <><Copy className="w-3.5 h-3.5" />Kopiera</>}
-          </button>
           {/* Om näringsnyttan */}
           <div className="mt-6">
             <button
@@ -459,6 +452,13 @@ export default function App() {
               </div>
             )}
           </div>
+          <button
+            onClick={() => copy(`Fosfor bortförd: ${phosphorus.toLocaleString('sv-SE')} kg\nKväve bortförd: ${nitrogen.toLocaleString('sv-SE')} kg\nTorrvikt: ${dryWeight.toLocaleString('sv-SE', { maximumFractionDigits: 1 })} ton\nVåtvikt: ${wetWeight.toLocaleString('sv-SE', { maximumFractionDigits: 1 })} ton`, 'naringsnytta')}
+            className="mt-2 flex items-center gap-1.5 text-xs text-[#808080] hover:text-[#294634] transition-colors cursor-pointer min-h-[44px]"
+            aria-label="Kopiera näringsnyttan"
+          >
+            {copied === 'naringsnytta' ? <><Check className="w-3.5 h-3.5" />Kopierat</> : <><Copy className="w-3.5 h-3.5" />Kopiera</>}
+          </button>
         </div>
 
         {/* Energi & Klimat */}
