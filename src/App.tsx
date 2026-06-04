@@ -59,7 +59,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F9F9F9] text-[#1A1A1A] font-body flex items-center justify-center p-6 sm:p-12">
+    <div className="min-h-dvh bg-[#F9F9F9] text-[#1A1A1A] font-body flex items-center justify-center p-6 sm:p-12">
       <div className="max-w-[712px] w-full">
 
         {/* Header */}
@@ -69,7 +69,7 @@ export default function App() {
             alt="Raws"
             className="h-7 mb-12 opacity-90"
           />
-          <h1 className="font-display text-[48px] sm:text-[64px] font-extrabold text-[#294634] leading-none tracking-tight whitespace-nowrap">
+          <h1 className="font-display text-[40px] sm:text-[64px] font-extrabold text-[#294634] leading-none tracking-tight">
             Vasskalkyl.
           </h1>
           <p className="font-body text-[#808080] text-sm mt-6 leading-relaxed">
@@ -85,11 +85,12 @@ export default function App() {
 
             {/* Hektar Input */}
             <div className="flex-1 min-w-0">
-              <label className="block text-xs font-heading font-medium text-[#808080] mb-4 uppercase tracking-widest">
+              <label htmlFor="hectares-input" className="block text-xs font-heading font-medium text-[#808080] mb-4 uppercase tracking-widest">
                 Skördad yta (Hektar)
               </label>
               <div className="relative border-b-2 border-[#80808025] focus-within:border-[#294634] transition-colors duration-200">
                 <input
+                  id="hectares-input"
                   type="number"
                   min="0"
                   step="0.1"
@@ -193,7 +194,7 @@ export default function App() {
           <div className="mt-6">
             <button
               onClick={() => setShowInfo(!showInfo)}
-              className="flex items-center gap-2 text-sm font-body text-[#808080] hover:text-[#294634] transition-colors mx-auto min-h-[44px]"
+              className="flex items-center gap-2 text-sm font-body text-[#808080] hover:text-[#294634] transition-colors mx-auto min-h-[44px] cursor-pointer"
             >
               <Info className="w-4 h-4" />
               <span>Om beräkningarna</span>
@@ -207,7 +208,7 @@ export default function App() {
                 </p>
                 <div>
                   <p className="font-heading font-medium mb-3">Ingångsantaganden</p>
-                  <table className="w-full text-xs border-collapse">
+                  <div className="overflow-x-auto"><table className="w-full text-xs border-collapse min-w-[300px]">
                     <thead>
                       <tr className="text-[#808080]">
                         <th className="text-left pb-2 font-heading font-medium">Parameter</th>
@@ -236,7 +237,7 @@ export default function App() {
                         <td className="text-right">10–30 %</td>
                       </tr>
                     </tbody>
-                  </table>
+                  </table></div>
                 </div>
                 <p className="text-xs text-[#808080]">
                   Torrvikt beräknas med schablon 5 ton TS/ha. Våtvikt = Torrvikt ÷ (1 − Vattenhalt).
@@ -298,7 +299,7 @@ export default function App() {
           <div className="mt-6">
             <button
               onClick={() => setShowNaringsInfo(!showNaringsInfo)}
-              className="flex items-center gap-2 text-sm font-body text-[#808080] hover:text-[#294634] transition-colors mx-auto min-h-[44px]"
+              className="flex items-center gap-2 text-sm font-body text-[#808080] hover:text-[#294634] transition-colors mx-auto min-h-[44px] cursor-pointer"
             >
               <Info className="w-4 h-4" />
               <span>Om näringsnyttan</span>
