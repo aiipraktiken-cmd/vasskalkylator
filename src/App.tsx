@@ -557,7 +557,7 @@ export default function App() {
         </div>
 
         {/* Footer */}
-        <div className="flex flex-col items-center gap-3 pb-8 pt-4">
+        <div className="flex flex-col items-center gap-3 pt-4 pb-2">
           <a href="https://raws.se" target="_blank" rel="noopener noreferrer">
             <img src="/raws-logo/raws-logo-green@2x.png" alt="Raws" className="h-8" />
           </a>
