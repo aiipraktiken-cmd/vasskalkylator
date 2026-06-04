@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "sync-brand": "cp -r ../raws-brand/. public/raws-logo/"
   },
   "dependencies": {
     "lucide-react": "^0.469.0",
