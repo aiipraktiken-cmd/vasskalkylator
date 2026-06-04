@@ -70,7 +70,7 @@ export default function App() {
             className="h-7 mb-12 opacity-90"
           />
           <h1 className="font-display text-[40px] sm:text-[64px] font-extrabold text-[#294634] leading-none tracking-tight">
-            Vasskalkylatorn.
+            Vasskalkylatorn
           </h1>
           <p className="font-body text-[#808080] text-sm mt-6 leading-relaxed">
             Beräkna reduktion av kväve och fosfor vid vasskörd
@@ -148,7 +148,7 @@ export default function App() {
             <h3 className="text-xs font-heading font-medium text-[#eddaa1] mb-8 uppercase tracking-widest">
               Bortförd näring
             </h3>
-            <div className="grid grid-cols-2 gap-8 relative z-10">
+            <div className="grid grid-cols-2 gap-4 sm:gap-8 relative z-10">
               <div>
                 <div className="flex items-baseline gap-1.5">
                   <span className="text-3xl sm:text-5xl font-display font-light tracking-tight break-all">
@@ -175,7 +175,7 @@ export default function App() {
                   </span>
                   <span className="text-sm text-[#eddaa1] font-body">kg</span>
                 </div>
-                <p className="text-sm mt-2 font-heading font-medium leading-snug">Fosfor<br className="sm:hidden" /> (elementärt P)</p>
+                <p className="text-sm mt-2 font-heading font-medium">Fosfor (P)</p>
                 <button
                   onClick={() => copy(phosphorus, 'phosphorus')}
                   className="mt-3 flex items-center gap-1.5 text-xs text-[#eddaa1] hover:text-white transition-colors duration-200 cursor-pointer min-h-[44px]"
@@ -218,7 +218,7 @@ export default function App() {
                     </thead>
                     <tbody className="divide-y divide-[#80808015]">
                       <tr>
-                        <td className="py-2">Fosfor (elementärt P)</td>
+                        <td className="py-2">Fosfor (P, elementärt)</td>
                         <td className="text-right">10 kg/ha</td>
                         <td className="text-right">2 kg/ha</td>
                       </tr>
