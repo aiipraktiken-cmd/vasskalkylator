@@ -231,15 +231,15 @@ export default function App() {
                       </tr>
                       <tr>
                         <td className="py-2">Vattenhalt</td>
-                        <td className="text-right">~ 50 %</td>
-                        <td className="text-right">~ 10–20 %</td>
+                        <td className="text-right">50–80 %</td>
+                        <td className="text-right">10–30 %</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
                 <p className="text-xs text-[#808080]">
                   Torrvikt beräknas med schablon 5 ton TS/ha. Våtvikt = Torrvikt ÷ (1 − Vattenhalt).
-                  Vid {isSummer ? 'sommar' : 'vinter'} används {isSummer ? '50' : '15'} % vattenhalt som medelvärde.
+                  Vid {isSummer ? 'sommar' : 'vinter'} används {isSummer ? '50–80 % (markskörd ~50 %, vattenskörd upp till 80 %)' : '10–30 %'} som vattenhalt enligt BalticReeds logistikrapport.
                 </p>
               </div>
             )}
@@ -284,7 +284,7 @@ export default function App() {
                 <Droplets className="w-4 h-4 flex-shrink-0" />
                 <span className="text-sm font-body">Vattenhalt</span>
               </div>
-              <span className="font-heading font-medium text-[#1A1A1A]">{isSummer ? '~ 50%' : '~ 10–20%'}</span>
+              <span className="font-heading font-medium text-[#1A1A1A]">{isSummer ? '~ 50–80%' : '~ 10–30%'}</span>
             </div>
           </div>
 
@@ -335,7 +335,7 @@ export default function App() {
               </span>
             </div>
             <div className="flex items-center justify-between py-3.5">
-              <span className="text-sm font-body text-[#808080]">Motsvarar hushållsel för</span>
+              <span className="text-sm font-body text-[#808080]">Motsvarar hushållsel (exkl. uppvärmning) för</span>
               <span className="font-heading font-medium text-[#1A1A1A]">{housesEquiv.toLocaleString('sv-SE')} villor/år</span>
             </div>
           </div>
@@ -344,7 +344,7 @@ export default function App() {
               Vass är ett snabbväxande biobränsle. Varje ton torr vass innehåller ca 4,8 MWh energi.
               Vassen binder koldioxid under sin tillväxt — genom att använda vassen som energi eller
               jordförbättring cirkulerar vi detta kol istället för att tillföra nytt fossilt kol till atmosfären.
-              Jämförelsen utgår från 5 000 kWh/år i hushållsel per villa.
+              Jämförelsen utgår från 5 000 kWh/år i hushållsel per villa (exklusive uppvärmning).
             </p>
           </div>
         </div>
