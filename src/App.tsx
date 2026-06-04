@@ -65,11 +65,13 @@ export default function App() {
 
         {/* Header */}
         <div className="mb-16 text-center flex flex-col items-center">
-          <img
-            src="/raws-logo/raws-logo-green@2x.png"
-            alt="Raws"
-            className="h-7 mb-12 opacity-90"
-          />
+          <a href="https://raws.se" target="_blank" rel="noopener noreferrer">
+            <img
+              src="/raws-logo/raws-logo-green@2x.png"
+              alt="Raws"
+              className="h-7 mb-12 opacity-90 hover:opacity-100 transition-opacity duration-200"
+            />
+          </a>
           <h1 className="font-display text-[40px] sm:text-[64px] font-extrabold text-[#294634] leading-none tracking-tight">
             Vasskalkylatorn
           </h1>
@@ -389,7 +391,7 @@ export default function App() {
           <img
             src="/raws-logo/raws-logo-green@2x.png"
             alt="Raws"
-            className="h-5 opacity-30"
+            className="h-5 opacity-70"
           />
         </div>
 
