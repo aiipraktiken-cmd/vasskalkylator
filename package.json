@@ -10,6 +10,7 @@
     "sync-brand": "cp -r ../raws-brand/. public/raws-logo/"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.107.0",
     "lucide-react": "^0.469.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"

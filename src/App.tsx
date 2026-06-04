@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Sun, Snowflake, Sprout, Droplets, Info, Scale, Copy, Check, Leaf, Zap, Wind, Car, Flame, House, Wheat, CalendarDays } from 'lucide-react'
+import { fetchStats, trackVisit, trackCalculation, type Stats } from './supabase'
 
 type Season = 'summer' | 'winter'
 type Copied = 'naring' | 'naringsnytta' | 'energi' | null
@@ -24,6 +25,23 @@ export default function App() {
   const [showNaringsInfo, setShowNaringsInfo] = useState(false)
   const [showEnergiInfo, setShowEnergiInfo] = useState(false)
   const [copied, setCopied] = useState<Copied>(null)
+  const [stats, setStats] = useState<Stats | null>(null)
+  const calcTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  useEffect(() => {
+    trackVisit()
+    fetchStats().then(setStats)
+  }, [])
+
+  useEffect(() => {
+    if (hectares === '' || hectares === 0) return
+    if (calcTimerRef.current) clearTimeout(calcTimerRef.current)
+    calcTimerRef.current = setTimeout(async () => {
+      await trackCalculation(hectares as number)
+      fetchStats().then(setStats)
+    }, 1500)
+    return () => { if (calcTimerRef.current) clearTimeout(calcTimerRef.current) }
+  }, [hectares, season])
 
   function copy(text: string, which: Copied) {
     navigator.clipboard.writeText(text)
@@ -221,6 +239,29 @@ export default function App() {
           <p className="font-body text-[#808080] text-sm mt-6 leading-relaxed">
             Från hektar till näringsbortförsel, biomassa och energipotential. Framtidens råvara växer redan i våra vatten.
           </p>
+
+          {stats && (
+            <div className="flex gap-8 mt-8 pt-8 border-t border-[#80808015]">
+              <div className="flex flex-col items-center gap-1">
+                <span className="font-display font-extrabold text-2xl text-[#294634]">
+                  {stats.visits.toLocaleString('sv-SE')}
+                </span>
+                <span className="text-xs font-heading font-medium text-[#808080] uppercase tracking-widest">Besök</span>
+              </div>
+              <div className="flex flex-col items-center gap-1">
+                <span className="font-display font-extrabold text-2xl text-[#294634]">
+                  {stats.calculations.toLocaleString('sv-SE')}
+                </span>
+                <span className="text-xs font-heading font-medium text-[#808080] uppercase tracking-widest">Beräkningar</span>
+              </div>
+              <div className="flex flex-col items-center gap-1">
+                <span className="font-display font-extrabold text-2xl text-[#294634]">
+                  {Number(stats.total_hectares).toLocaleString('sv-SE', { maximumFractionDigits: 0 })} ha
+                </span>
+                <span className="text-xs font-heading font-medium text-[#808080] uppercase tracking-widest">Hektar beräknat</span>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Main Card */}
