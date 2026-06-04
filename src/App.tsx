@@ -27,13 +27,21 @@ export default function App() {
   const [copied, setCopied] = useState<Copied>(null)
   const [stats, setStats] = useState<Stats | null>(null)
   const calcTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const visitTracked = useRef(false)
+  const isFirstRender = useRef(true)
 
   useEffect(() => {
+    if (visitTracked.current) return
+    visitTracked.current = true
     trackVisit()
     fetchStats().then(setStats)
   }, [])
 
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+      return
+    }
     if (hectares === '' || hectares === 0) return
     if (calcTimerRef.current) clearTimeout(calcTimerRef.current)
     calcTimerRef.current = setTimeout(async () => {
