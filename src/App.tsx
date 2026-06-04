@@ -63,7 +63,7 @@ export default function App() {
       <div className="max-w-[712px] w-full">
 
         {/* Header */}
-        <div className="mb-16">
+        <div className="mb-16 text-center flex flex-col items-center">
           <img
             src="/raws-logo/raws-logo-green@2x.png"
             alt="Raws"
