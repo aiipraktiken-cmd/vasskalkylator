@@ -562,22 +562,6 @@ export default function App() {
             <img src="/raws-logo/raws-logo-green@2x.png" alt="Raws" className="h-8" />
           </a>
           <p className="text-xs font-body text-[#808080] tracking-wide">Nature's materials for a world beyond plastic</p>
-          {stats && (
-            <div className="flex gap-8 mt-4 pt-4 border-t border-[#80808015] w-full justify-center">
-              <div className="flex flex-col items-center gap-0.5">
-                <span className="font-body text-base text-[#b0b0b0]">{stats.visits.toLocaleString('sv-SE')}</span>
-                <span className="text-[10px] font-heading text-[#c8c8c8] uppercase tracking-widest">Besök</span>
-              </div>
-              <div className="flex flex-col items-center gap-0.5">
-                <span className="font-body text-base text-[#b0b0b0]">{stats.calculations.toLocaleString('sv-SE')}</span>
-                <span className="text-[10px] font-heading text-[#c8c8c8] uppercase tracking-widest">Beräkningar</span>
-              </div>
-              <div className="flex flex-col items-center gap-0.5">
-                <span className="font-body text-base text-[#b0b0b0]">{Number(stats.total_hectares).toLocaleString('sv-SE', { maximumFractionDigits: 0 })} ha</span>
-                <span className="text-[10px] font-heading text-[#c8c8c8] uppercase tracking-widest">Hektar</span>
-              </div>
-            </div>
-          )}
         </div>
 
       </div>
