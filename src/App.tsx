@@ -28,7 +28,6 @@ export default function App() {
   const [stats, setStats] = useState<Stats | null>(null)
   const calcTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const visitTracked = useRef(false)
-  const isFirstRender = useRef(true)
 
   useEffect(() => {
     if (visitTracked.current) return
@@ -37,19 +36,14 @@ export default function App() {
     fetchStats().then(setStats)
   }, [])
 
-  useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false
-      return
-    }
-    if (hectares === '' || hectares === 0) return
+  function scheduleCalcTracking(ha: number) {
+    if (ha === 0) return
     if (calcTimerRef.current) clearTimeout(calcTimerRef.current)
     calcTimerRef.current = setTimeout(async () => {
-      await trackCalculation(hectares as number)
+      await trackCalculation(ha)
       fetchStats().then(setStats)
     }, 1500)
-    return () => { if (calcTimerRef.current) clearTimeout(calcTimerRef.current) }
-  }, [hectares, season])
+  }
 
   function copy(text: string, which: Copied) {
     navigator.clipboard.writeText(text)
@@ -81,7 +75,10 @@ export default function App() {
       setHectares('')
     } else {
       const num = parseFloat(val)
-      if (!isNaN(num) && num >= 0) setHectares(num)
+      if (!isNaN(num) && num >= 0) {
+        setHectares(num)
+        scheduleCalcTracking(num)
+      }
     }
   }
 
@@ -308,7 +305,7 @@ export default function App() {
               </label>
               <div className="flex gap-2 justify-center sm:justify-start">
                 <button
-                  onClick={() => setSeason('summer')}
+                  onClick={() => { setSeason('summer'); scheduleCalcTracking(ha) }}
                   className={`flex flex-col items-center justify-center py-2 px-4 rounded-md border transition-all duration-200 min-h-[56px] min-w-[72px] cursor-pointer ${
                     isSummer
                       ? 'border-[#294634] bg-[#294634] text-white'
@@ -320,7 +317,7 @@ export default function App() {
                 </button>
 
                 <button
-                  onClick={() => setSeason('winter')}
+                  onClick={() => { setSeason('winter'); scheduleCalcTracking(ha) }}
                   className={`flex flex-col items-center justify-center py-2 px-4 rounded-md border transition-all duration-200 min-h-[56px] min-w-[72px] cursor-pointer ${
                     !isSummer
                       ? 'border-[#294634] bg-[#294634] text-white'
