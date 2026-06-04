@@ -74,7 +74,7 @@ export default function App() {
             Vasskalkylatorn
           </h1>
           <p className="font-body text-[#808080] text-sm mt-6 leading-relaxed">
-            Beräkna reduktion av kväve och fosfor vid vasskörd
+            Från hektar till näringsbortförsel, biomassa och energipotential. Framtidens råvara växer redan i våra vatten.
           </p>
         </div>
 
