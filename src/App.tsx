@@ -22,6 +22,7 @@ export default function App() {
   const [season, setSeason] = useState<Season>('summer')
   const [showInfo, setShowInfo] = useState(false)
   const [showNaringsInfo, setShowNaringsInfo] = useState(false)
+  const [showEnergiInfo, setShowEnergiInfo] = useState(false)
   const [copied, setCopied] = useState<Copied>(null)
 
   function copy(value: number, which: Copied) {
@@ -362,13 +363,24 @@ export default function App() {
             </div>
           </div>
           <div className="mt-6">
-            <p className="text-xs font-body text-[#808080] leading-relaxed">
-              Vass är ett snabbväxande biobränsle. Varje ton torr vass innehåller ca 4,8 MWh energi.
-              Vassen binder koldioxid under sin tillväxt — genom att använda vassen som energi eller
-              jordförbättring cirkulerar vi detta kol istället för att tillföra nytt fossilt kol till atmosfären.
-              Jämförelsen utgår från 5 000 kWh/år i hushållsel per villa (exklusive uppvärmning).
-              Elbilsräckvidden beräknas med genomsnittsförbrukning 1,6 kWh/mil för en mellanstor bil.
-            </p>
+            <button
+              onClick={() => setShowEnergiInfo(!showEnergiInfo)}
+              className="flex items-center gap-2 text-sm font-body text-[#808080] hover:text-[#294634] transition-colors mx-auto min-h-[44px] cursor-pointer"
+            >
+              <Info className="w-4 h-4" />
+              <span>Om energi &amp; klimat</span>
+            </button>
+            {showEnergiInfo && (
+              <div className="mt-4 bg-[#F9F9F9] border border-[#80808015] rounded-md p-6 text-sm font-body text-[#1A1A1A] leading-relaxed">
+                <p>
+                  Vass är ett snabbväxande biobränsle. Varje ton torr vass innehåller ca 4,8 MWh energi.
+                  Vassen binder koldioxid under sin tillväxt — genom att använda vassen som energi eller
+                  jordförbättring cirkulerar vi detta kol istället för att tillföra nytt fossilt kol till atmosfären.
+                  Jämförelsen utgår från 5 000 kWh/år i hushållsel per villa (exklusive uppvärmning).
+                  Elbilsräckvidden beräknas med genomsnittsförbrukning 1,6 kWh/mil för en mellanstor bil.
+                </p>
+              </div>
+            )}
           </div>
         </div>
 
