@@ -4,12 +4,102 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Beräkna reduktion av kväve och fosfor vid vasskörd" />
-    <meta property="og:title" content="Vasskalkylatorn — Beräkna näringsbortförsel vid vasskörd" />
-    <meta property="og:description" content="Beräkna reduktion av kväve och fosfor vid vasskörd" />
+
+    <title>Vasseffekt — Beräkna näringsbortförsel och klimatnytta vid vasskörd</title>
+    <meta name="description" content="Beräkna hur mycket fosfor och kväve som bortförs vid vasskörd, samt biomassan och energipotentialen. Gratis kalkylator för vassskötsel och restaurering av Östersjöns ekosystem." />
+    <meta name="keywords" content="vasskörd, näringsbortförsel, fosfor, kväve, Östersjön, vass, bioenergi, restaurering, BalticReed, Raws" />
+    <meta name="author" content="Raws" />
+    <link rel="canonical" href="https://vasseffekt.vercel.app/" />
+
+    <!-- hreflang for multilingual -->
+    <link rel="alternate" hreflang="sv" href="https://vasseffekt.vercel.app/" />
+    <link rel="alternate" hreflang="en" href="https://vasseffekt.vercel.app/" />
+    <link rel="alternate" hreflang="fi" href="https://vasseffekt.vercel.app/" />
+    <link rel="alternate" hreflang="x-default" href="https://vasseffekt.vercel.app/" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Vasseffekt — Beräkna näringsbortförsel vid vasskörd" />
+    <meta property="og:description" content="Beräkna hur mycket fosfor och kväve som bortförs vid vasskörd, plus energipotential och klimatnytta. Gratis kalkylator." />
     <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary" />
-    <title>Vasskalkylatorn</title>
+    <meta property="og:url" content="https://vasseffekt.vercel.app/" />
+    <meta property="og:image" content="https://vasseffekt.vercel.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="sv_SE" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale:alternate" content="fi_FI" />
+    <meta property="og:site_name" content="Vasseffekt" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Vasseffekt — Beräkna näringsbortförsel vid vasskörd" />
+    <meta name="twitter:description" content="Beräkna hur mycket fosfor och kväve som bortförs vid vasskörd, plus energipotential och klimatnytta." />
+    <meta name="twitter:image" content="https://vasseffekt.vercel.app/og-image.png" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "SoftwareApplication",
+          "name": "Vasseffekt",
+          "url": "https://vasseffekt.vercel.app/",
+          "description": "Kalkylator för att beräkna näringsbortförsel (fosfor och kväve), biomassa och energipotential vid vasskörd.",
+          "applicationCategory": "UtilitiesApplication",
+          "operatingSystem": "Web",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "SEK"
+          },
+          "author": {
+            "@type": "Organization",
+            "name": "Raws",
+            "url": "https://raws.se"
+          },
+          "inLanguage": ["sv", "en", "fi"]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Hur mycket fosfor bortförs vid vasskörd?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Vid sommarskörd bortförs typiskt 10 kg fosfor per hektar. Vid vinterskörd är värdet lägre eftersom vassen återför näring till rotsystemet inför vintern. Beräkningarna baseras på mätningar från bl.a. finska ELY-centralen och BalticReed."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Hur mycket kväve bortförs vid vasskörd?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Vid sommarskörd bortförs typiskt 100 kg kväve per hektar. Värdena avser totalkväve (total-N) och baseras på vetenskapliga mätdata."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Vad är energipotentialen i vass?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Varje ton torr vass (torrvikt) innehåller ca 4,8 MWh energi. Vassen är ett förnybart biobränsle som binder koldioxid under sin tillväxt."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Varför är vasskörd bra för Östersjön?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Vass absorberar fosfor och kväve under växtsäsongen. När biomassan skördas lämnar närsalterna vattensystemet permanent, vilket motverkar övergödning. Råvaran kan sedan förädlas till material, energi eller jordförbättring."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
